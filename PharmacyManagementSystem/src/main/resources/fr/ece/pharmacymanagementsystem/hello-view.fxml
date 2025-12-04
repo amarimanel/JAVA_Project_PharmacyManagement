@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.Avatar?>
+<?import com.gluonhq.charm.glisten.control.Icon?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.ece.pharmacymanagementsystem.HelloController">
+   <children>
+      <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <AnchorPane fx:id="login_form" layoutX="105.0" layoutY="124.0" prefHeight="500.0" prefWidth="350.4" styleClass="white-bg" stylesheets="@../../../../../Design/PageDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Icon content="GROUP" layoutX="149.0" layoutY="28.0" prefHeight="45.0" prefWidth="50.0">
+                     <opaqueInsets>
+                        <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                     </opaqueInsets>
+                  </Icon>
+                  <Label layoutX="84.0" layoutY="74.0" prefHeight="38.0" prefWidth="179.0" text="Login Account" textFill="#6bb548">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="135.0" layoutY="112.0" text="Admin Portal" />
+                  <TextField fx:id="login_username" layoutX="56.0" layoutY="170.0" prefHeight="38.0" prefWidth="238.0" promptText="Username" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
+                  <PasswordField fx:id="login_password" layoutX="56.0" layoutY="221.0" prefHeight="38.0" prefWidth="238.0" promptText="Password" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
+                  <TextField fx:id="login_showPassword" layoutX="56.0" layoutY="221.0" prefHeight="38.0" prefWidth="238.0" promptText="Password" stylesheets="@../../../../../Design/PageDesign.css" visible="false">
+                     <styleClass>
+                        <String fx:value="text-field" />
+                        <String fx:value="white-bg" />
+                     </styleClass>
+                  </TextField>
+                  <CheckBox fx:id="login_checkBox" layoutX="56.0" layoutY="270.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="134.0" text="Show Password">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </CheckBox>
+                  <Button fx:id="login_loginBtn" layoutX="56.0" layoutY="308.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="238.0" stylesheets="@../../../../../Design/PageDesign.css" text="Login">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="btn-l" />
+                        <String fx:value="radius" />
+                     </styleClass>
+                  </Button>
+                  <ComboBox fx:id="login_user" layoutX="100.0" layoutY="374.0" prefWidth="150.0" promptText="Select User" stylesheets="@../../../../../Design/PageDesign.css">
+                     <styleClass>
+                        <String fx:value="text-field" />
+                        <String fx:value="radius" />
+                     </styleClass></ComboBox>
+                  <Label layoutX="63.0" layoutY="463.0" text="Have No Account Yet?" />
+                  <Hyperlink fx:id="login_registerHere" layoutX="196.0" layoutY="459.0" onAction="#switchForm" prefHeight="26.0" prefWidth="88.0" text="RegisterHere" />
+                  <Hyperlink fx:id="login_forgotPassword" layoutX="116.0" layoutY="432.0" prefHeight="26.0" prefWidth="114.0" text="Forgot Password" />
+                  <Avatar layoutX="20.0" layoutY="103.0">
+                     <image>
+                        <Image url="@../../../../../../../../Downloads/Gemini_Generated_Image_s2sdf7s2sdf7s2sd-removebg-preview.png" />
+                     </image>
+                  </Avatar>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="register_form" layoutX="10.0" layoutY="10.0" prefHeight="500.0" prefWidth="350.4" styleClass="white-bg" stylesheets="@../../../../../Design/PageDesign.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Icon content="DESKTOP_WINDOWS" layoutX="149.0" layoutY="28.0" prefHeight="45.0" prefWidth="50.0">
+                     <opaqueInsets>
+                        <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                     </opaqueInsets>
+                  </Icon>
+                  <Label layoutX="70.0" layoutY="74.0" prefHeight="38.0" prefWidth="205.0" text="Register Account" textFill="#6bb548">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="135.0" layoutY="112.0" text="Admin Portal" />
+                  <TextField fx:id="register_username" layoutX="56.0" layoutY="242.0" prefHeight="38.0" prefWidth="238.0" promptText="Username" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
+                  <PasswordField fx:id="register_password" layoutX="56.0" layoutY="293.0" prefHeight="38.0" prefWidth="238.0" promptText="Password" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
+                  <TextField fx:id="register_showPassword" layoutX="56.0" layoutY="293.0" prefHeight="38.0" prefWidth="238.0" promptText="Password" stylesheets="@../../../../../Design/PageDesign.css" visible="false">
+                     <styleClass>
+                        <String fx:value="text-field" />
+                        <String fx:value="white-bg" />
+                     </styleClass>
+                  </TextField>
+                  <CheckBox fx:id="register_checkBox" layoutX="56.0" layoutY="342.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="134.0" text="Show Password">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </CheckBox>
+                  <Button layoutX="56.0" layoutY="380.0" mnemonicParsing="false" onAction="#register_signUpBtn" prefHeight="38.0" prefWidth="238.0" stylesheets="@../../../../../Design/PageDesign.css" text="Sing Up">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="btn-l" />
+                        <String fx:value="radius" />
+                     </styleClass>
+                  </Button>
+                  <Label layoutX="54.0" layoutY="463.0" text="Already have an account ?" />
+                  <Hyperlink fx:id="register_loginHere" layoutX="209.0" layoutY="459.0" onAction="#switchForm" prefHeight="26.0" prefWidth="78.0" text="Login Here" />
+                  <TextField fx:id="register_email" layoutX="56.0" layoutY="189.0" prefHeight="38.0" prefWidth="238.0" promptText="Email Address" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="register_form1" layoutX="5.0" layoutY="5.0" prefHeight="500.0" prefWidth="350.4" styleClass="white-bg" stylesheets="@../../../../../Design/PageDesign.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+               <children>
+                  <Icon content="DESKTOP_WINDOWS" layoutX="149.0" layoutY="28.0" prefHeight="45.0" prefWidth="50.0">
+                     <opaqueInsets>
+                        <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                     </opaqueInsets>
+                  </Icon>
+                  <Label layoutX="82.0" layoutY="74.0" prefHeight="38.0" prefWidth="186.0" text="Reset Password" textFill="#6bb548">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="135.0" layoutY="112.0" text="Admin Portal" />
+                  <PasswordField fx:id="reset_checkPassword" layoutX="56.0" layoutY="293.0" prefHeight="38.0" prefWidth="238.0" promptText="Password" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
+                  <TextField fx:id="reset_resetCheckPassword" layoutX="56.0" layoutY="293.0" prefHeight="38.0" prefWidth="238.0" promptText="Check Pasword" stylesheets="@../../../../../Design/PageDesign.css" visible="false">
+                     <styleClass>
+                        <String fx:value="text-field" />
+                        <String fx:value="white-bg" />
+                     </styleClass>
+                  </TextField>
+                  <CheckBox fx:id="reset_checkBox" layoutX="56.0" layoutY="342.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="134.0" text="Show Password">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </CheckBox>
+                  <Button fx:id="reset_resetBtn" layoutX="56.0" layoutY="380.0" mnemonicParsing="false" onAction="#register_signUpBtn" prefHeight="38.0" prefWidth="238.0" stylesheets="@../../../../../Design/PageDesign.css" text="Reset">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <styleClass>
+                        <String fx:value="btn-l" />
+                        <String fx:value="radius" />
+                     </styleClass>
+                  </Button>
+                  <Label layoutX="64.0" layoutY="457.0" text="Remember Password ?" />
+                  <Hyperlink fx:id="reset_loginHere" layoutX="197.0" layoutY="453.0" onAction="#register_logInHere" prefHeight="26.0" prefWidth="88.0" text="Login Here" />
+                  <TextField fx:id="reset_email" layoutX="56.0" layoutY="189.0" prefHeight="38.0" prefWidth="238.0" promptText="Email Address" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
+                  <PasswordField fx:id="reset_password" layoutX="56.0" layoutY="241.0" prefHeight="38.0" prefWidth="238.0" promptText="Reset Password" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
+                  <TextField fx:id="reset_resetShowPassword" layoutX="56.0" layoutY="241.0" prefHeight="38.0" prefWidth="238.0" promptText="Reset Password" stylesheets="@../../../../../Design/PageDesign.css" visible="false">
+                     <styleClass>
+                        <String fx:value="text-field" />
+                        <String fx:value="white-bg" />
+                     </styleClass>
+                  </TextField>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
