@@ -12,6 +12,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class HelloController {
@@ -60,7 +64,7 @@ public class HelloController {
     private AnchorPane register_form;
 
     @FXML
-    private AnchorPane register_form1;
+    private AnchorPane reset_form;
 
     @FXML
     private PasswordField register_password;
@@ -90,6 +94,9 @@ public class HelloController {
     private Button reset_resetBtn;
 
     @FXML
+    private Button register_signupBtn;
+
+    @FXML
     private TextField reset_resetCheckPassword;
 
     @FXML
@@ -106,6 +113,274 @@ public class HelloController {
     void register_signUpBtn(ActionEvent event) {
 
     }
+    // pour les database roots
+    private Connection connect;
+    private PreparedStatement prepare;
+    private ResultSet result;
+
+    private AlertMessage alert = new  AlertMessage();
+
+
+    public void loginAccount(){
+
+        if(login_username.getText().isEmpty() || login_password.getText().isEmpty()){
+
+            alert.errorMessage("Incorrect Username or Password");
+        } else{
+
+            String sql = "SELECT * FROM admin WHERE username = ? AND password = ?";
+
+            connect = DataBase.connectDB();
+
+            try{
+
+                if (!login_showPassword.isVisible()){
+
+                    if (!login_password.getText().equals(login_showPassword.getText())){
+
+                        login_showPassword.setText(login_password.getText());
+                    }
+
+                }else{
+
+                    if (!login_showPassword.getText().equals(login_password.getText())){
+
+                        login_password.setText(login_showPassword.getText());
+                    }
+
+                }
+
+                prepare = connect.prepareStatement(sql);
+                prepare.setString(1, login_username.getText());
+                prepare.setString(2, login_password.getText());
+                result = prepare.executeQuery();
+
+                if (result.next()){
+                    // if correct username and passwors
+
+                    alert.successMessage("Login Successful");
+                }else{
+                    alert.errorMessage("Incorrect Username or Password");
+                }
+
+
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+
+        }
+
+    }
+
+
+    public void registerAccount(){
+
+        if(register_email.getText().isEmpty()||register_username.getText().isEmpty()||register_password.getText().isEmpty()){
+
+            // we create an alert message
+            alert.errorMessage("please fill all the fields");
+
+        }else {
+            // pour voir si le username deja entrée existe deja dans notre base de donnée
+            String checkUsername = "Select * FROM admin Where username = ' " + register_username.getText() + "'";
+
+            connect = DataBase.connectDB();
+
+            try{
+
+                if(!register_showPassword.isVisible()){
+
+                    if(!register_showPassword.getText().equals(register_password.getText())){
+
+                        register_showPassword.setText(register_password.getText());
+
+                    }
+                } else{
+
+                    if (!register_showPassword.getText().equals(register_password.getText())) {
+
+                        register_password.setText(register_showPassword.getText());
+
+                    }
+
+                }
+
+                prepare = connect.prepareStatement(checkUsername);
+                result = prepare.executeQuery();
+
+                if(result.next()){
+                    alert.errorMessage(register_username.getText()+" existe déja");
+                }else if (register_password.getText().length() < 8) {
+
+                    alert.errorMessage("Invalid Password, at least 8 characters needed");
+
+
+                } else {
+                    String insertData = "INSERT INTO admin (email, username, password, date) VALUES (?, ?, ?,?)";
+                    // pour ajouter une date dans notre base de donnée
+                    Date date = new Date();
+                    java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+
+                    prepare = connect.prepareStatement(insertData);
+                    prepare.setString(1, register_email.getText());
+                    prepare.setString(2, register_username.getText());
+                    prepare.setString(3, register_password.getText());
+                    prepare.setString(4,String.valueOf(sqlDate));
+
+                    prepare.executeUpdate();
+                    alert.successMessage(" Registered Successfully");
+                    registerClear();
+
+                    // switch to log in form apres l enregistrement
+                    login_form.setVisible(true);
+                    register_form.setVisible(false);
+                }
+
+            }catch(Exception e){e.printStackTrace();}
+
+        }
+
+    }
+
+    public void resetPassword() {
+        String email = reset_email.getText();
+        String newPassword = reset_password.getText();
+        String confirmPassword = reset_checkPassword.getText(); // champ pour confirmer le mot de passe
+
+        if(email.isEmpty() || newPassword.isEmpty() || confirmPassword.isEmpty()) {
+            alert.errorMessage("Please fill all the fields");
+            return;
+        }
+
+        if(!newPassword.equals(confirmPassword)) {
+            alert.errorMessage("Passwords do not match");
+            return;
+        }
+
+        String checkEmail = "SELECT * FROM admin WHERE email = ?";
+        String updatePassword = "UPDATE admin SET password = ? WHERE email = ?";
+
+        connect = DataBase.connectDB();
+
+        try {
+
+            if (!reset_resetShowPassword.isVisible() || !reset_resetCheckPassword.isVisible()) {
+
+                if (!reset_password.getText().equals(reset_resetShowPassword.getText()) || !reset_checkPassword.getText().equals(reset_resetCheckPassword.getText() )){
+
+                    reset_resetShowPassword.setText(reset_password.getText());
+                    reset_resetCheckPassword.setText(reset_checkPassword.getText());
+                }
+
+            }else{
+
+                if (!login_showPassword.getText().equals(login_password.getText())){
+
+                    login_password.setText(login_showPassword.getText());
+                }
+
+            }
+
+            // Vérifier si l'email existe
+            prepare = connect.prepareStatement(checkEmail);
+            prepare.setString(1, email);
+            result = prepare.executeQuery();
+
+            if(result.next()) {
+                // Email existe, on peut mettre à jour le mot de passe
+                prepare = connect.prepareStatement(updatePassword);
+                prepare.setString(1, newPassword);
+                prepare.setString(2, email);
+
+                int rowsAffected = prepare.executeUpdate();
+                if(rowsAffected > 0) {
+                    alert.successMessage("Password updated successfully");
+                }else if (register_password.getText().length() < 8) {
+
+                    alert.errorMessage("Invalid Password, at least 8 characters needed");
+
+
+                } else {
+                    alert.errorMessage("Error: Password not updated");
+                }
+
+            } else {
+                alert.errorMessage("Email not found");
+            }
+
+        } catch(Exception e) {
+            e.printStackTrace();
+            alert.errorMessage("An error occurred");
+        }
+    }
+
+    public void registerClear(){
+        register_email.clear();
+        register_username.clear();
+        register_password.clear();
+        register_showPassword.clear();
+
+    }
+
+    public void registerShowPassword() {
+
+        if (register_checkBox.isSelected()) {
+
+            register_showPassword.setText(register_password.getText());
+            register_showPassword.setVisible(true);
+            register_password.setVisible(false);
+        }else {
+            register_password.setText(register_showPassword.getText());
+            register_showPassword.setVisible(false);
+            register_password.setVisible(true);
+
+        }
+
+    }
+
+    public void loginShowPassword() {
+
+        if (login_checkBox.isSelected()) {
+
+            login_showPassword.setText(login_password.getText());
+            login_showPassword.setVisible(true);
+            login_password.setVisible(false);
+        }else {
+            login_password.setText(login_showPassword.getText());
+            login_showPassword.setVisible(false);
+            login_password.setVisible(true);
+
+        }
+
+    }
+
+    public void resetShowPassword() {
+
+        if (reset_checkBox.isSelected()) {
+
+            reset_resetShowPassword.setText(reset_password.getText());
+            reset_resetShowPassword.setVisible(true);
+            reset_password.setVisible(false);
+
+            reset_resetCheckPassword.setText(reset_checkPassword.getText());
+            reset_resetCheckPassword.setVisible(true);
+            reset_checkPassword.setVisible(false);
+
+        }else {
+            reset_password.setText(reset_resetShowPassword.getText());
+            reset_resetShowPassword.setVisible(false);
+            reset_password.setVisible(true);
+
+            reset_checkPassword.setText(reset_resetCheckPassword.getText());
+            reset_resetCheckPassword.setVisible(false);
+            reset_checkPassword.setVisible(true);
+
+        }
+
+    }
+
+
+
 
     public void switchForm(ActionEvent event) {
 
@@ -113,11 +388,24 @@ public class HelloController {
             // here the registration form will show
             login_form.setVisible(false);
             register_form.setVisible(true);
+            reset_form.setVisible(false);
 
-        }else if (event.getSource() == register_loginHere) {
+        }else if (event.getSource() == login_forgotPassword) {
+            //reset will show
+            login_form.setVisible(false);
+            register_form.setVisible(false);
+            reset_form.setVisible(true);
+        }
+        else if (event.getSource() == register_loginHere) {
             //log in will show
             login_form.setVisible(true);
             register_form.setVisible(false);
+            reset_form.setVisible(false);
+        }else if (event.getSource() == reset_loginHere) {
+            // get back to login from reset
+            login_form.setVisible(true);
+            register_form.setVisible(false);
+            reset_form.setVisible(false);
         }
 
 

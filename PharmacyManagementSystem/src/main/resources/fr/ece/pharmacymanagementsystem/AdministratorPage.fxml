@@ -25,8 +25,8 @@
                         <Font name="System Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Label layoutX="134.0" layoutY="130.0" text="Admin Portal" />
-                  <TextField fx:id="login_username" layoutX="56.0" layoutY="170.0" prefHeight="38.0" prefWidth="238.0" promptText="Username" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
+                  <Label layoutX="119.0" layoutY="130.0" text="Administrator Portal" />
+                  <TextField fx:id="login_AdministratorID" layoutX="56.0" layoutY="170.0" prefHeight="38.0" prefWidth="238.0" promptText="Username" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
                   <PasswordField fx:id="login_password" layoutX="56.0" layoutY="221.0" prefHeight="38.0" prefWidth="238.0" promptText="Password" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
                   <TextField fx:id="login_showPassword" layoutX="56.0" layoutY="221.0" prefHeight="38.0" prefWidth="238.0" promptText="Password" stylesheets="@../../../../../Design/PageDesign.css" visible="false">
                      <styleClass>
@@ -52,7 +52,8 @@
                      <styleClass>
                         <String fx:value="text-field" />
                         <String fx:value="radius" />
-                     </styleClass></ComboBox>
+                     </styleClass>
+                  </ComboBox>
                   <Label layoutX="63.0" layoutY="463.0" text="Have No Account Yet?" />
                   <Hyperlink fx:id="login_registerHere" layoutX="196.0" layoutY="459.0" onAction="#switchForm" prefHeight="26.0" prefWidth="88.0" text="RegisterHere" />
                   <Hyperlink fx:id="login_forgotPassword" layoutX="116.0" layoutY="432.0" onAction="#switchForm" prefHeight="26.0" prefWidth="114.0" text="Forgot Password" />
@@ -70,21 +71,21 @@
                         <Font name="System Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Label layoutX="136.0" layoutY="128.0" text="Admin Portal" />
-                  <TextField fx:id="register_username" layoutX="56.0" layoutY="242.0" prefHeight="38.0" prefWidth="238.0" promptText="Username" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
-                  <PasswordField fx:id="register_password" layoutX="56.0" layoutY="293.0" prefHeight="38.0" prefWidth="238.0" promptText="Password" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
+                  <Label layoutX="120.0" layoutY="128.0" text="Administrator Portal" />
+                  <TextField fx:id="register_AdminID" layoutX="56.0" layoutY="257.0" prefHeight="38.0" prefWidth="238.0" promptText="Administrator ID" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
+                  <PasswordField fx:id="register_password" layoutX="56.0" layoutY="308.0" prefHeight="38.0" prefWidth="238.0" promptText="Password" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
                   <TextField fx:id="register_showPassword" layoutX="56.0" layoutY="293.0" prefHeight="38.0" prefWidth="238.0" promptText="Password" stylesheets="@../../../../../Design/PageDesign.css" visible="false">
                      <styleClass>
                         <String fx:value="text-field" />
                         <String fx:value="white-bg" />
                      </styleClass>
                   </TextField>
-                  <CheckBox fx:id="register_checkBox" layoutX="56.0" layoutY="342.0" mnemonicParsing="false" onAction="#registerShowPassword" prefHeight="18.0" prefWidth="134.0" text="Show Password">
+                  <CheckBox fx:id="register_checkBox" layoutX="56.0" layoutY="357.0" mnemonicParsing="false" onAction="#registerShowPassword" prefHeight="18.0" prefWidth="134.0" text="Show Password">
                      <font>
                         <Font size="11.0" />
                      </font>
                   </CheckBox>
-                  <Button fx:id="register_signupBtn" layoutX="56.0" layoutY="380.0" mnemonicParsing="false" onAction="#registerAccount" prefHeight="38.0" prefWidth="238.0" stylesheets="@../../../../../Design/PageDesign.css" text="Sing Up">
+                  <Button fx:id="register_signupBtn" layoutX="56.0" layoutY="395.0" mnemonicParsing="false" onAction="#registerAccount" prefHeight="38.0" prefWidth="238.0" stylesheets="@../../../../../Design/PageDesign.css" text="Sing Up">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -95,12 +96,13 @@
                   </Button>
                   <Label layoutX="54.0" layoutY="463.0" text="Already have an account ?" />
                   <Hyperlink fx:id="register_loginHere" layoutX="209.0" layoutY="459.0" onAction="#switchForm" prefHeight="26.0" prefWidth="78.0" text="Login Here" />
-                  <TextField fx:id="register_email" layoutX="56.0" layoutY="189.0" prefHeight="38.0" prefWidth="238.0" promptText="Email Address" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
+                  <TextField fx:id="register_email" layoutX="56.0" layoutY="204.0" prefHeight="38.0" prefWidth="238.0" promptText="Email Address" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="75.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="390.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0">
                      <image>
                         <Image url="@../../../../../../../../Downloads/Gemini_Generated_Image_s2sdf7s2sdf7s2sd-removebg-preview.png" />
                      </image>
                   </ImageView>
+                  <TextField fx:id="register_fullName" layoutX="56.0" layoutY="152.0" prefHeight="38.0" prefWidth="238.0" promptText="Full Name" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="reset_form" layoutX="5.0" layoutY="5.0" prefHeight="500.0" prefWidth="350.4" styleClass="white-bg" stylesheets="@../../../../../Design/PageDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -110,20 +112,20 @@
                         <Font name="System Bold" size="25.0" />
                      </font>
                   </Label>
-                  <Label layoutX="135.0" layoutY="130.0" text="Admin Portal" />
-                  <PasswordField fx:id="reset_checkPassword" layoutX="56.0" layoutY="293.0" prefHeight="38.0" prefWidth="238.0" promptText="Password" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
+                  <Label layoutX="121.0" layoutY="130.0" text="Administrator Portal" />
+                  <PasswordField fx:id="reset_checkPassword" layoutX="56.0" layoutY="314.0" prefHeight="38.0" prefWidth="238.0" promptText="Password" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
                   <TextField fx:id="reset_resetCheckPassword" layoutX="56.0" layoutY="293.0" prefHeight="38.0" prefWidth="238.0" promptText="Check Pasword" stylesheets="@../../../../../Design/PageDesign.css" visible="false">
                      <styleClass>
                         <String fx:value="text-field" />
                         <String fx:value="white-bg" />
                      </styleClass>
                   </TextField>
-                  <CheckBox fx:id="reset_checkBox" layoutX="56.0" layoutY="342.0" mnemonicParsing="false" onAction="#resetShowPassword" prefHeight="18.0" prefWidth="134.0" text="Show Password">
+                  <CheckBox fx:id="reset_checkBox" layoutX="56.0" layoutY="363.0" mnemonicParsing="false" onAction="#resetShowPassword" prefHeight="18.0" prefWidth="134.0" text="Show Password">
                      <font>
                         <Font size="11.0" />
                      </font>
                   </CheckBox>
-                  <Button fx:id="reset_resetBtn" layoutX="56.0" layoutY="380.0" mnemonicParsing="false" onAction="#resetPassword" prefHeight="38.0" prefWidth="238.0" stylesheets="@../../../../../Design/PageDesign.css" text="Reset">
+                  <Button fx:id="reset_resetBtn" layoutX="56.0" layoutY="401.0" mnemonicParsing="false" onAction="#resetPassword" prefHeight="38.0" prefWidth="238.0" stylesheets="@../../../../../Design/PageDesign.css" text="Reset">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -134,8 +136,8 @@
                   </Button>
                   <Label layoutX="64.0" layoutY="457.0" text="Remember Password ?" />
                   <Hyperlink fx:id="reset_loginHere" layoutX="197.0" layoutY="453.0" onAction="#switchForm" prefHeight="26.0" prefWidth="88.0" text="Login Here" />
-                  <TextField fx:id="reset_email" layoutX="56.0" layoutY="189.0" prefHeight="38.0" prefWidth="238.0" promptText="Email Address" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
-                  <PasswordField fx:id="reset_password" layoutX="56.0" layoutY="241.0" prefHeight="38.0" prefWidth="238.0" promptText="Reset Password" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
+                  <TextField fx:id="reset_adminID" layoutX="56.0" layoutY="210.0" prefHeight="38.0" prefWidth="238.0" promptText="Administrator ID" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
+                  <PasswordField fx:id="reset_password" layoutX="56.0" layoutY="262.0" prefHeight="38.0" prefWidth="238.0" promptText="Reset Password" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
                   <TextField fx:id="reset_resetShowPassword" layoutX="56.0" layoutY="241.0" prefHeight="38.0" prefWidth="238.0" promptText="Reset Password" stylesheets="@../../../../../Design/PageDesign.css" visible="false">
                      <styleClass>
                         <String fx:value="text-field" />
@@ -147,6 +149,7 @@
                         <Image url="@../../../../../../../../Downloads/Gemini_Generated_Image_s2sdf7s2sdf7s2sd-removebg-preview.png" />
                      </image>
                   </ImageView>
+                  <TextField fx:id="reset_fullName" layoutX="55.0" layoutY="160.0" prefHeight="38.0" prefWidth="238.0" promptText="Full Name" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
                </children>
             </AnchorPane>
          </children>

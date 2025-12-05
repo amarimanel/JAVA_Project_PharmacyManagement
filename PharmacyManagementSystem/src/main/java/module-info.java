@@ -10,6 +10,7 @@ module fr.ece.pharmacymanagementsystem {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires java.sql;
 
     opens fr.ece.pharmacymanagementsystem to javafx.fxml;
     exports fr.ece.pharmacymanagementsystem;
