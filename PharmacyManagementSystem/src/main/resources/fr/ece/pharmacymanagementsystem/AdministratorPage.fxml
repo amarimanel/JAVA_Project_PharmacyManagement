@@ -18,7 +18,7 @@
    <children>
       <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <AnchorPane fx:id="login_form" layoutX="105.0" layoutY="124.0" prefHeight="500.0" prefWidth="350.4" styleClass="white-bg" stylesheets="@../../../../../Design/PageDesign.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="login_form" layoutX="105.0" layoutY="124.0" prefHeight="500.0" prefWidth="350.4" styleClass="white-bg" stylesheets="@../../../../../Design/PageDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label layoutX="83.0" layoutY="92.0" prefHeight="38.0" prefWidth="179.0" text="Login Account" textFill="#6bb548">
                      <font>
@@ -26,7 +26,7 @@
                      </font>
                   </Label>
                   <Label layoutX="119.0" layoutY="130.0" text="Administrator Portal" />
-                  <TextField fx:id="login_AdministratorID" layoutX="56.0" layoutY="170.0" prefHeight="38.0" prefWidth="238.0" promptText="Username" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
+                  <TextField fx:id="login_username" layoutX="56.0" layoutY="170.0" prefHeight="38.0" prefWidth="238.0" promptText="Username" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
                   <PasswordField fx:id="login_password" layoutX="56.0" layoutY="221.0" prefHeight="38.0" prefWidth="238.0" promptText="Password" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
                   <TextField fx:id="login_showPassword" layoutX="56.0" layoutY="221.0" prefHeight="38.0" prefWidth="238.0" promptText="Password" stylesheets="@../../../../../Design/PageDesign.css" visible="false">
                      <styleClass>
@@ -48,7 +48,7 @@
                         <String fx:value="radius" />
                      </styleClass>
                   </Button>
-                  <ComboBox fx:id="login_user" layoutX="100.0" layoutY="374.0" prefWidth="150.0" promptText="Select User" stylesheets="@../../../../../Design/PageDesign.css">
+                  <ComboBox fx:id="login_user" layoutX="100.0" layoutY="374.0" onAction="#switchPage" prefWidth="150.0" promptText="Select User" stylesheets="@../../../../../Design/PageDesign.css">
                      <styleClass>
                         <String fx:value="text-field" />
                         <String fx:value="radius" />
@@ -73,8 +73,8 @@
                   </Label>
                   <Label layoutX="120.0" layoutY="128.0" text="Administrator Portal" />
                   <TextField fx:id="register_AdminID" layoutX="56.0" layoutY="257.0" prefHeight="38.0" prefWidth="238.0" promptText="Administrator ID" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
-                  <PasswordField fx:id="register_password" layoutX="56.0" layoutY="308.0" prefHeight="38.0" prefWidth="238.0" promptText="Password" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
-                  <TextField fx:id="register_showPassword" layoutX="56.0" layoutY="293.0" prefHeight="38.0" prefWidth="238.0" promptText="Password" stylesheets="@../../../../../Design/PageDesign.css" visible="false">
+                  <PasswordField fx:id="register_password" layoutX="56.0" layoutY="312.0" prefHeight="38.0" prefWidth="238.0" promptText="Password" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
+                  <TextField fx:id="register_showPassword" layoutX="56.0" layoutY="312.0" prefHeight="38.0" prefWidth="238.0" promptText="Password" stylesheets="@../../../../../Design/PageDesign.css" visible="false">
                      <styleClass>
                         <String fx:value="text-field" />
                         <String fx:value="white-bg" />
@@ -105,7 +105,7 @@
                   <TextField fx:id="register_fullName" layoutX="56.0" layoutY="152.0" prefHeight="38.0" prefWidth="238.0" promptText="Full Name" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="reset_form" layoutX="5.0" layoutY="5.0" prefHeight="500.0" prefWidth="350.4" styleClass="white-bg" stylesheets="@../../../../../Design/PageDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="reset_form" layoutX="5.0" layoutY="5.0" prefHeight="500.0" prefWidth="350.4" styleClass="white-bg" stylesheets="@../../../../../Design/PageDesign.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label layoutX="82.0" layoutY="92.0" prefHeight="38.0" prefWidth="186.0" text="Reset Password" textFill="#6bb548">
                      <font>

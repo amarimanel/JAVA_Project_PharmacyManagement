@@ -1,8 +1,13 @@
 package fr.ece.pharmacymanagementsystem;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -11,14 +16,19 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
-public class HelloController {
+public class HelloController implements Initializable {
+
 
     @FXML
     private Label welcomeText;
@@ -379,6 +389,47 @@ public class HelloController {
 
     }
 
+    public void switchPage(){
+
+        if(login_user.getSelectionModel().getSelectedItem() == "Admin Portal"){
+
+            try{
+                Parent root = FXMLLoader.load(getClass().getResource("AdministratorPage.fxml"));
+                Stage stage = new Stage();
+
+                stage.setTitle("Pharmacy Management System");
+
+                stage.setMinHeight(500);
+                stage.setMinWidth(350);
+
+                stage.setScene( new Scene(root));
+                stage.show();
+
+                login_user.getScene().getWindow().hide();
+
+            }catch(Exception e){e.printStackTrace();}
+
+        }else if (login_user.getSelectionModel().getSelectedItem() == "Employee portal"){
+            try{
+                Parent root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
+                Stage stage = new Stage();
+
+                stage.setTitle("Pharmacy Management System");
+
+                stage.setMinHeight(500);
+                stage.setMinWidth(350);
+
+                stage.setScene( new Scene(root));
+                stage.show();
+                login_user.getScene().getWindow().hide();
+
+            }catch(Exception e){e.printStackTrace();}
+
+
+        }
+
+    }
+
 
 
 
@@ -412,7 +463,29 @@ public class HelloController {
     }
 
     @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+    public void userList(){
+
+        List<String> listU = new ArrayList<>();
+
+        for (String data : Users.user) {
+            listU.add(data);
+
+
+        }
+
+        ObservableList listData = FXCollections.observableList(listU);
+        login_user.setItems(listData);
+
     }
+
+    @FXML
+    protected void onHelloButtonClick() {
+
+    }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        userList();
+    }
+
+
 }

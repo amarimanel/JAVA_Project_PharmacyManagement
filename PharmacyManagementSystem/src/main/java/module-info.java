@@ -11,6 +11,8 @@ module fr.ece.pharmacymanagementsystem {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires java.sql;
+    requires javafx.base;
+    requires javafx.graphics;
 
     opens fr.ece.pharmacymanagementsystem to javafx.fxml;
     exports fr.ece.pharmacymanagementsystem;
