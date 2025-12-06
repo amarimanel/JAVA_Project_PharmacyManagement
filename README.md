@@ -8,3 +8,5 @@ Note : dans le premier document, j’ai créé les classes et l’héritage. On 
 
 
 je viens juste de mettre ce que j ai ajouter, je vais bientot finir avec la page de connexion et on pourras travailler sur les classes et ce qui reste, j'ai un petit soucis avec la base de donnée pour enregistrer un nouveau administrateur, sinon le reste marche bien.
+
+Solved Problem!
