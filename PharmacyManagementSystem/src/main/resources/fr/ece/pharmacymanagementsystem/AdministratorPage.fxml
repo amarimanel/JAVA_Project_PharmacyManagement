@@ -18,7 +18,7 @@
    <children>
       <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <AnchorPane fx:id="login_form" layoutX="105.0" layoutY="124.0" prefHeight="500.0" prefWidth="350.4" styleClass="white-bg" stylesheets="@../../../../../Design/PageDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="login_form" layoutX="105.0" layoutY="124.0" prefHeight="500.0" prefWidth="350.4" styleClass="white-bg" stylesheets="@../../../../../Design/PageDesign.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label layoutX="83.0" layoutY="92.0" prefHeight="38.0" prefWidth="179.0" text="Login Account" textFill="#6bb548">
                      <font>
@@ -64,7 +64,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="register_form" layoutX="10.0" layoutY="10.0" prefHeight="500.0" prefWidth="350.4" styleClass="white-bg" stylesheets="@../../../../../Design/PageDesign.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="register_form" layoutX="10.0" layoutY="10.0" prefHeight="500.0" prefWidth="350.4" styleClass="white-bg" stylesheets="@../../../../../Design/PageDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label layoutX="71.0" layoutY="90.0" prefHeight="38.0" prefWidth="205.0" text="Register Account" textFill="#6bb548">
                      <font>
@@ -102,7 +102,7 @@
                         <Image url="@../../../../../../../../Downloads/Gemini_Generated_Image_s2sdf7s2sdf7s2sd-removebg-preview.png" />
                      </image>
                   </ImageView>
-                  <TextField fx:id="register_fullName" layoutX="56.0" layoutY="152.0" prefHeight="38.0" prefWidth="238.0" promptText="Full Name" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
+                  <TextField fx:id="register_username" layoutX="56.0" layoutY="152.0" prefHeight="38.0" prefWidth="238.0" promptText="Full Name" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="reset_form" layoutX="5.0" layoutY="5.0" prefHeight="500.0" prefWidth="350.4" styleClass="white-bg" stylesheets="@../../../../../Design/PageDesign.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

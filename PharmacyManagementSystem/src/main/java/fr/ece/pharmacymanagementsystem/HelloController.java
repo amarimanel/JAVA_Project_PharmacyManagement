@@ -128,7 +128,7 @@ public class HelloController implements Initializable {
     private PreparedStatement prepare;
     private ResultSet result;
 
-    private AlertMessage alert = new  AlertMessage();
+    private final AlertMessage alert = new  AlertMessage();
 
 
     public void loginAccount(){
@@ -166,7 +166,7 @@ public class HelloController implements Initializable {
                 result = prepare.executeQuery();
 
                 if (result.next()){
-                    // if correct username and passwors
+                    // if correct username and password
 
                     alert.successMessage("Login Successful");
                 }else{
@@ -219,7 +219,7 @@ public class HelloController implements Initializable {
                 result = prepare.executeQuery();
 
                 if(result.next()){
-                    alert.errorMessage(register_username.getText()+" existe déja");
+                    alert.errorMessage(register_username.getText()+"exist déja");
                 }else if (register_password.getText().length() < 8) {
 
                     alert.errorMessage("Invalid Password, at least 8 characters needed");
