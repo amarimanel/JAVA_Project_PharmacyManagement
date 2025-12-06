@@ -2,6 +2,17 @@
     -fx-background-color: #FFFFFF;
 }
 
+.border-top{
+    -fx-border-color: white;
+    -fx-border-width: .5px 0 .0px 0;
+
+}
+
+.shadow{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);
+
+}
+
 .radius{
     -fx-background-radius: 6px;
 }
@@ -15,6 +26,7 @@
     -fx-border-color: linear-gradient(to bottom right,#A3D78A, #C1E59F);
     -fx-border-width: 1px;
 }
+
 
 .text-field-2{
     -fx-border-color: white;
@@ -39,5 +51,29 @@
 
 .btn-l:hover{
     -fx-background-color: linear-gradient(to bottom right,#A3D78A, #C1E59F);
+}
+
+.table-view{
+    -fx-background-color: linear-gradient(to bottom right,#A3D78A, #C1E59F);
+    -fx-background-radius: 8px 8px 0px 0px;
+    -fx-background-insets: 0 0 0 0;
+}
+
+.table-view .column-header, .filter{
+    -fx-background-color: transparent;
+    -fx-size: 40px;
+}
+
+.table-view .column-header, .label{
+    -fx-text-fill: black;
+    -fx-font-family: "Arial";
+}
+
+.search{
+    -fx-background-color: transparent;
+    -fx-border-width: 1px;
+    -fx-border-color: linear-gradient(to bottom right,#A3D78A, #C1E59F);
+    -fx-border-radius: 4px;
+    -fx-font-family: "Tahoma";
 }
 
