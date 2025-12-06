@@ -426,6 +426,21 @@ public class HelloController implements Initializable {
             }catch(Exception e){e.printStackTrace();}
 
 
+        } else if (login_user.getSelectionModel().getSelectedItem() == "Client portal"){
+            try{
+                Parent root = FXMLLoader.load(getClass().getResource("ClientPage.fxml"));
+                Stage stage = new Stage();
+
+                stage.setTitle("Pharmacy Management System");
+
+                stage.setMinHeight(500);
+                stage.setMinWidth(350);
+
+                stage.setScene( new Scene(root));
+                stage.show();
+                login_user.getScene().getWindow().hide();
+
+            }catch(Exception e){e.printStackTrace();}
         }
 
     }

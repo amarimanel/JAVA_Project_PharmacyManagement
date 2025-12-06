@@ -22,6 +22,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 
 import static fr.ece.pharmacymanagementsystem.Users.user;
@@ -130,24 +131,78 @@ public class AdministratorPageControl implements Initializable {
 
 
     @FXML
-    void loginAccount(ActionEvent event) {
+    void loginAccount() {
+
+
+        if(login_AdministratorID.getText().isEmpty() ||
+        login_password.getText().isEmpty()){
+            alert.errorMessage("Please fill all the fields");
+        }else {
+
+            String sql = "select * from administrator where administrator_id = ? and password = ? ";
+            connect = DataBase.connectDB();
+
+            try{
+                if (!login_showPassword.isVisible()){
+
+                    if (!login_password.getText().equals(login_showPassword.getText())){
+
+                        login_showPassword.setText(login_password.getText());
+                    }
+
+                }else{
+
+                    if (!login_showPassword.getText().equals(login_password.getText())){
+
+                        login_password.setText(login_showPassword.getText());
+                    }
+
+                }
+
+                prepare = connect.prepareStatement(sql);
+                prepare.setString(1, login_AdministratorID.getText());
+                prepare.setString(2, login_password.getText());
+                result = prepare.executeQuery();
+
+                if (result.next()){
+                    // if correct username and password
+
+                    alert.successMessage("Login Successful");
+                }else{
+                    alert.errorMessage("Incorrect Admin ID or Password");
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
     }
 
     @FXML
-    void loginShowPassword(ActionEvent event) {
+    void loginShowPassword() {
+        if (login_checkBox.isSelected()) {
+            login_showPassword.setText(login_password.getText());
+            login_showPassword.setVisible(true);
+            login_password.setVisible(false);
 
+        }else {
+            login_password.setText(login_showPassword.getText());
+            login_showPassword.setVisible(false);
+            login_password.setVisible(true);
+        }
 
 
     }
 
     @FXML
-    void registerAccount(ActionEvent event) {
+    void registerAccount() {
 
         if(register_email.getText().isEmpty() ||
                 register_fullName.getText().isEmpty() ||
-                register_password.getText().isEmpty()||
-                register_showPassword.getText().isEmpty()) {
+                register_password.getText().isEmpty() ||
+                register_AdminID.getText().isEmpty()
+        ) {
             alert.errorMessage("Please fill all the fields");
 
         }else {
@@ -157,6 +212,21 @@ public class AdministratorPageControl implements Initializable {
             connect = DataBase.connectDB();
 
             try{
+
+                if(!register_showPassword.isVisible()){
+                    if(register_showPassword.getText().equals(register_password.getText())){
+
+                        register_showPassword.setText(register_password.getText());
+                    }
+                }else{
+
+                    if (!register_showPassword.getText().equals(register_password.getText())) {
+
+                        register_password.setText(register_showPassword.getText());
+
+                    }
+                }
+
 
                 prepare = connect.prepareStatement(checkAdminID);
                 result = prepare.executeQuery();
@@ -171,7 +241,7 @@ public class AdministratorPageControl implements Initializable {
                 }else {
 
                     String insrtData = "INSERT INTO administrator (full_name , email , administrator_id, password , date)"
-                            + "VALUES (?,?,?,?)";
+                            + "VALUES (?,?,?,?,?)";
 
                     prepare =  connect.prepareStatement(insrtData);
 
@@ -180,8 +250,9 @@ public class AdministratorPageControl implements Initializable {
 
                     prepare.setString(1, register_fullName.getText());
                     prepare.setString(2, register_email.getText());
-                    prepare.setString(3, register_password.getText());
-                    prepare.setString(4,String.valueOf(sqlDate));
+                    prepare.setString(3, register_AdminID.getText());
+                    prepare.setString(4, register_password.getText());
+                    prepare.setString(5,String.valueOf(sqlDate));
 
                     prepare.executeUpdate();
 
@@ -196,17 +267,124 @@ public class AdministratorPageControl implements Initializable {
     }
 
     @FXML
-    void registerShowPassword(ActionEvent event) {
+    void registerShowPassword() {
 
+        if ( register_checkBox.isSelected() ) {
+            register_showPassword.setText(register_password.getText());
+            register_showPassword.setVisible(true);
+            register_password.setVisible(false);
+
+        }else {
+            register_password.setText(register_showPassword.getText());
+            register_showPassword.setVisible(false);
+            register_password.setVisible(true);
+        }
     }
 
     @FXML
     void resetPassword(ActionEvent event) {
 
+        String fullName = reset_fullName.getText().trim();
+        String newPassword = reset_password.getText();
+        String confirmPassword = reset_checkPassword.getText();
+
+
+        if(fullName.isEmpty() || newPassword.isEmpty() || confirmPassword.isEmpty()) {
+            alert.errorMessage("Please fill all the fields");
+            return;
+        }
+
+        if(!newPassword.equals(confirmPassword)) {
+            alert.errorMessage("Passwords do not match");
+            return;
+        }
+
+
+        if (newPassword.length() < 8) {
+            alert.errorMessage("Invalid Password, at least 8 characters needed");
+            return;
+        }
+
+        // 3. Attention aux noms des colonnes (full_name vs fullName)
+        String checkFullName = "SELECT * FROM administrator WHERE full_name = ?";
+        String updatePassword = "UPDATE administrator SET password = ? WHERE full_name = ?";
+
+        connect = DataBase.connectDB();
+
+        try {
+            // Vérifier si le nom existe
+            prepare = connect.prepareStatement(checkFullName);
+            prepare.setString(1, fullName);
+            result = prepare.executeQuery();
+
+            if(result.next()) {
+
+                prepare = connect.prepareStatement(updatePassword);
+                prepare.setString(1, newPassword);
+                prepare.setString(2, fullName);
+
+                int rowsAffected = prepare.executeUpdate();
+
+                if(rowsAffected > 0) {
+                    alert.successMessage("Password updated successfully");
+
+                } else {
+                    alert.errorMessage("Error: Password not updated");
+                }
+            } else {
+                alert.errorMessage("Name not found in database for: '" + fullName + "'");
+            }
+
+        } catch(Exception e) {
+            e.printStackTrace();
+            alert.errorMessage("An error occurred: " + e.getMessage());
+        }
     }
 
     @FXML
     void resetShowPassword(ActionEvent event) {
+
+        if(reset_checkBox.isSelected()){
+            reset_resetShowPassword.setText(reset_password.getText());
+            reset_resetShowPassword.setVisible(true);
+            reset_password.setVisible(false);
+
+        }else {
+            reset_password.setText(reset_resetShowPassword.getText());
+            reset_resetShowPassword.setVisible(false);
+            reset_password.setVisible(true);
+        }
+    }
+
+    public void registerAdminID(){
+        int tempID = 0;
+        String adminID = "AID-";
+        String sql = "SELECT MAX(id) FROM administrator";
+
+        connect = DataBase.connectDB();
+
+        try {
+
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            if(result.next()) {
+                tempID = result.getInt("MAX(id)");
+            }
+
+            if ( tempID == 0 ) {
+                tempID += 1;
+                adminID += tempID;
+            }else {
+                adminID += (tempID+1);
+            }
+            register_AdminID.setText(adminID);
+            register_AdminID.setDisable(true);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 
     }
 
@@ -267,12 +445,45 @@ public class AdministratorPageControl implements Initializable {
 
             }catch(Exception e){e.printStackTrace();}
 
+        }else if (login_user.getSelectionModel().getSelectedItem() == "Client portal"){
+            try{
+                Parent root = FXMLLoader.load(getClass().getResource("ClientPage.fxml"));
+                Stage stage = new Stage();
+
+                stage.setTitle("Pharmacy Management System");
+
+                stage.setMinHeight(500);
+                stage.setMinWidth(350);
+
+                stage.setScene( new Scene(root));
+                stage.show();
+                login_user.getScene().getWindow().hide();
+
+            }catch(Exception e){e.printStackTrace();}
         }
+
+
+    }
+
+    @FXML
+    public void userList(){
+
+        List<String> listU = new ArrayList<>();
+
+        for (String data : Users.user) {
+            listU.add(data);
+
+
+        }
+
+        ObservableList listData = FXCollections.observableList(listU);
+        login_user.setItems(listData);
 
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        registerAdminID();
+        userList();
     }
 }

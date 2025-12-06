@@ -14,11 +14,11 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.ece.pharmacymanagementsystem.HelloController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.ece.pharmacymanagementsystem.AdministratorPageControl">
    <children>
       <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <AnchorPane fx:id="login_form" layoutX="105.0" layoutY="124.0" prefHeight="500.0" prefWidth="350.4" styleClass="white-bg" stylesheets="@../../../../../Design/PageDesign.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="login_form" layoutX="105.0" layoutY="124.0" prefHeight="500.0" prefWidth="350.4" styleClass="white-bg" stylesheets="@../../../../../Design/PageDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label layoutX="83.0" layoutY="92.0" prefHeight="38.0" prefWidth="179.0" text="Login Account" textFill="#6bb548">
                      <font>
@@ -26,9 +26,9 @@
                      </font>
                   </Label>
                   <Label layoutX="119.0" layoutY="130.0" text="Administrator Portal" />
-                  <TextField fx:id="login_username" layoutX="56.0" layoutY="170.0" prefHeight="38.0" prefWidth="238.0" promptText="Username" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
-                  <PasswordField fx:id="login_password" layoutX="56.0" layoutY="221.0" prefHeight="38.0" prefWidth="238.0" promptText="Password" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
-                  <TextField fx:id="login_showPassword" layoutX="56.0" layoutY="221.0" prefHeight="38.0" prefWidth="238.0" promptText="Password" stylesheets="@../../../../../Design/PageDesign.css" visible="false">
+                  <TextField fx:id="login_administratorID" layoutX="56.0" layoutY="170.0" onAction="#loginAccount" prefHeight="38.0" prefWidth="238.0" promptText="Administrator ID" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
+                  <PasswordField fx:id="login_password" layoutX="56.0" layoutY="221.0" onAction="#loginAccount" prefHeight="38.0" prefWidth="238.0" promptText="Password" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
+                  <TextField fx:id="login_showPassword" layoutX="56.0" layoutY="221.0" onAction="#loginAccount" prefHeight="38.0" prefWidth="238.0" promptText="Password" stylesheets="@../../../../../Design/PageDesign.css" visible="false">
                      <styleClass>
                         <String fx:value="text-field" />
                         <String fx:value="white-bg" />
@@ -64,7 +64,7 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="register_form" layoutX="10.0" layoutY="10.0" prefHeight="500.0" prefWidth="350.4" styleClass="white-bg" stylesheets="@../../../../../Design/PageDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="register_form" layoutX="10.0" layoutY="10.0" prefHeight="500.0" prefWidth="350.4" styleClass="white-bg" stylesheets="@../../../../../Design/PageDesign.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label layoutX="71.0" layoutY="90.0" prefHeight="38.0" prefWidth="205.0" text="Register Account" textFill="#6bb548">
                      <font>
@@ -102,7 +102,7 @@
                         <Image url="@../../../../../../../../Downloads/Gemini_Generated_Image_s2sdf7s2sdf7s2sd-removebg-preview.png" />
                      </image>
                   </ImageView>
-                  <TextField fx:id="register_username" layoutX="56.0" layoutY="152.0" prefHeight="38.0" prefWidth="238.0" promptText="Full Name" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
+                  <TextField fx:id="register_fullName" layoutX="56.0" layoutY="152.0" prefHeight="38.0" prefWidth="238.0" promptText="Full Name" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="reset_form" layoutX="5.0" layoutY="5.0" prefHeight="500.0" prefWidth="350.4" styleClass="white-bg" stylesheets="@../../../../../Design/PageDesign.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -113,19 +113,19 @@
                      </font>
                   </Label>
                   <Label layoutX="121.0" layoutY="130.0" text="Administrator Portal" />
-                  <PasswordField fx:id="reset_checkPassword" layoutX="56.0" layoutY="314.0" prefHeight="38.0" prefWidth="238.0" promptText="Password" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
-                  <TextField fx:id="reset_resetCheckPassword" layoutX="56.0" layoutY="293.0" prefHeight="38.0" prefWidth="238.0" promptText="Check Pasword" stylesheets="@../../../../../Design/PageDesign.css" visible="false">
+                  <PasswordField fx:id="reset_checkPassword" layoutX="56.0" layoutY="264.0" prefHeight="38.0" prefWidth="238.0" promptText="Password" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
+                  <TextField fx:id="reset_resetCheckPassword" layoutX="56.0" layoutY="264.0" prefHeight="38.0" prefWidth="238.0" promptText="Check Pasword" stylesheets="@../../../../../Design/PageDesign.css" visible="false">
                      <styleClass>
                         <String fx:value="text-field" />
                         <String fx:value="white-bg" />
                      </styleClass>
                   </TextField>
-                  <CheckBox fx:id="reset_checkBox" layoutX="56.0" layoutY="363.0" mnemonicParsing="false" onAction="#resetShowPassword" prefHeight="18.0" prefWidth="134.0" text="Show Password">
+                  <CheckBox fx:id="reset_checkBox" layoutX="56.0" layoutY="313.0" mnemonicParsing="false" onAction="#resetShowPassword" prefHeight="18.0" prefWidth="134.0" text="Show Password">
                      <font>
                         <Font size="11.0" />
                      </font>
                   </CheckBox>
-                  <Button fx:id="reset_resetBtn" layoutX="56.0" layoutY="401.0" mnemonicParsing="false" onAction="#resetPassword" prefHeight="38.0" prefWidth="238.0" stylesheets="@../../../../../Design/PageDesign.css" text="Reset">
+                  <Button fx:id="reset_resetBtn" layoutX="56.0" layoutY="351.0" mnemonicParsing="false" onAction="#resetPassword" prefHeight="38.0" prefWidth="238.0" stylesheets="@../../../../../Design/PageDesign.css" text="Reset">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -136,9 +136,8 @@
                   </Button>
                   <Label layoutX="64.0" layoutY="457.0" text="Remember Password ?" />
                   <Hyperlink fx:id="reset_loginHere" layoutX="197.0" layoutY="453.0" onAction="#switchForm" prefHeight="26.0" prefWidth="88.0" text="Login Here" />
-                  <TextField fx:id="reset_adminID" layoutX="56.0" layoutY="210.0" prefHeight="38.0" prefWidth="238.0" promptText="Administrator ID" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
-                  <PasswordField fx:id="reset_password" layoutX="56.0" layoutY="262.0" prefHeight="38.0" prefWidth="238.0" promptText="Reset Password" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
-                  <TextField fx:id="reset_resetShowPassword" layoutX="56.0" layoutY="241.0" prefHeight="38.0" prefWidth="238.0" promptText="Reset Password" stylesheets="@../../../../../Design/PageDesign.css" visible="false">
+                  <PasswordField fx:id="reset_password" layoutX="56.0" layoutY="212.0" prefHeight="38.0" prefWidth="238.0" promptText="Reset Password" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
+                  <TextField fx:id="reset_resetShowPassword" layoutX="56.0" layoutY="212.0" prefHeight="38.0" prefWidth="238.0" promptText="Reset Password" stylesheets="@../../../../../Design/PageDesign.css" visible="false">
                      <styleClass>
                         <String fx:value="text-field" />
                         <String fx:value="white-bg" />
