@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.AreaChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -86,19 +88,17 @@
                         <Line endX="100.0" layoutX="110.0" layoutY="232.0" startX="-100.0" />
                         <Label layoutX="14.0" layoutY="244.0" text="Features" />
                         <Button fx:id="dashboard_btn" layoutX="12.0" layoutY="269.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="196.0" text="Dashboard" />
-                        <Button fx:id="dashboard_manageProducts" layoutX="12.0" layoutY="303.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="196.0" text="Manage Products" />
-                        <Button fx:id="dashboard_Clients" layoutX="12.0" layoutY="447.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="196.0" text="Manage Stock" />
-                        <Button fx:id="dashboard_manageProducts1" layoutX="12.0" layoutY="341.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="196.0" text="Manage Employees" />
-                        <Button fx:id="dashboard_manageProducts11" layoutX="12.0" layoutY="412.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="196.0" text="Manage Suppliers" />
-                        <Button fx:id="dashboard_manageProducts2" layoutX="12.0" layoutY="375.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="196.0" text="Manage Clients" />
-                        <Button fx:id="dashboard_Clients1" layoutX="12.0" layoutY="482.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="196.0" text="Sales History and Revenue" />
+                        <Button fx:id="dashboard_manageProductsBtn" layoutX="12.0" layoutY="303.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="196.0" text="Manage Products" />
+                        <Button fx:id="dashboard_manageEmployeesBtn" layoutX="12.0" layoutY="341.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="196.0" text="Manage Employees" />
+                        <Button fx:id="dashboard_manageClientsBtn" layoutX="12.0" layoutY="375.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="196.0" text="Manage Clients" />
+                        <Button fx:id="dashboard_salesRevenueBtn" layoutX="12.0" layoutY="410.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="196.0" text="Sales History and Revenue" />
                      </children>
                   </AnchorPane>
                </left>
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f2f5f3;" stylesheets="@../../../../../Design/PageDesign.css" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane prefHeight="569.6" prefWidth="880.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="dashboard" prefHeight="569.6" prefWidth="880.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane prefHeight="163.0" prefWidth="850.0" style="-fx-background-color: d4d9d6;" stylesheets="@../../../../../Design/PageDesign.css" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="14.0">
                                  <styleClass>
@@ -221,7 +221,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane prefHeight="569.6" prefWidth="880.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane prefHeight="569.6" prefWidth="880.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="15.2" layoutY="36.0" prefHeight="217.0" prefWidth="850.0" stylesheets="@../../../../../Design/PageDesign.css" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="14.0">
                                  <styleClass>
@@ -313,6 +313,206 @@
                                           <String fx:value="radius" />
                                        </styleClass>
                                     </TableView>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="569.6" prefWidth="880.0" stylesheets="@../../../../../Design/PageDesign.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane prefHeight="546.0" prefWidth="554.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+                                 <stylesheets>
+                                    <URL value="@../../../../../Design/DashboardDesign.css" />
+                                    <URL value="@../../../../../Design/PageDesign.css" />
+                                 </stylesheets>
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                    <String fx:value="radius" />
+                                 </styleClass>
+                                 <children>
+                                    <TableView layoutX="12.0" layoutY="63.0" prefHeight="467.0" prefWidth="518.0">
+                                      <columns>
+                                        <TableColumn prefWidth="75.0" text="ID" />
+                                        <TableColumn prefWidth="98.4000015258789" text="Full name" />
+                                          <TableColumn prefWidth="121.5999755859375" text="Email" />
+                                          <TableColumn prefWidth="104.79998779296875" text="Username" />
+                                          <TableColumn prefWidth="118.39999389648438" text="Date" />
+                                      </columns>
+                                    </TableView>
+                                    <Label layoutX="33.0" layoutY="25.0" prefHeight="20.0" prefWidth="119.0" text="Search Employee:" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Arial Italic" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="152.0" layoutY="21.0" prefHeight="27.0" prefWidth="182.0" promptText="Search Employee" />
+                                    <Label layoutX="345.0" layoutY="25.0" prefHeight="20.0" prefWidth="33.0" text="By :" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Arial Italic" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox layoutX="379.0" layoutY="22.0" prefWidth="150.0" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="541.0" prefWidth="282.0" stylesheets="@../../../../../Design/PageDesign.css" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="radius" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <Label layoutX="70.0" layoutY="23.0" prefHeight="20.0" prefWidth="142.0" text="Manage Employees" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Arial Italic" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Line endX="100.0" layoutX="141.0" layoutY="50.0" startX="-100.0" />
+                                    <TextField layoutX="93.0" layoutY="78.0" prefHeight="27.0" prefWidth="180.0" promptText="ID" />
+                                    <TextField layoutX="92.0" layoutY="125.0" prefHeight="27.0" prefWidth="182.0" promptText="Full Name" />
+                                    <TextField layoutX="92.0" layoutY="174.0" prefHeight="27.0" prefWidth="182.0" promptText="Email" />
+                                    <Label layoutX="21.0" layoutY="82.0" prefHeight="20.0" prefWidth="70.0" text="ID :" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Arial Italic" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="21.0" layoutY="129.0" prefHeight="20.0" prefWidth="70.0" text="Full name:" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Arial Italic" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="21.0" layoutY="178.0" prefHeight="20.0" prefWidth="70.0" text="Email :" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Arial Italic" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="92.0" layoutY="219.0" prefHeight="27.0" prefWidth="182.0" promptText="Username" />
+                                    <Label layoutX="21.0" layoutY="223.0" prefHeight="20.0" prefWidth="70.0" text="Username:" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Arial Italic" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="92.0" layoutY="263.0" prefHeight="27.0" prefWidth="182.0" promptText="Date" />
+                                    <Label layoutX="21.0" layoutY="267.0" prefHeight="20.0" prefWidth="70.0" text="Date :" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Arial Italic" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Button layoutX="41.0" layoutY="323.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Update" />
+                                    <Button layoutX="140.0" layoutY="395.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Delete" />
+                                    <Button layoutX="140.0" layoutY="323.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Add" />
+                                    <Button layoutX="41.0" layoutY="395.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Clear" />
+                                    <Button layoutX="42.0" layoutY="466.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="185.0" text="Import" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="569.6" prefWidth="880.0" stylesheets="@../../../../../Design/PageDesign.css" visible="false">
+                           <children>
+                              <AnchorPane prefHeight="546.0" prefWidth="554.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
+                                 <stylesheets>
+                                    <URL value="@../../../../../Design/DashboardDesign.css" />
+                                    <URL value="@../../../../../Design/PageDesign.css" />
+                                 </stylesheets>
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                    <String fx:value="radius" />
+                                 </styleClass>
+                                 <children>
+                                    <ScrollPane layoutY="64.8" prefHeight="476.0" prefWidth="554.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="65.0">
+                                       <content>
+                                          <AnchorPane prefHeight="534.0" prefWidth="762.0">
+                                             <children>
+                                                <TableView prefHeight="534.0" prefWidth="744.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="0.0">
+                                                   <columns>
+                                                      <TableColumn prefWidth="43.20001029968262" text="ID" />
+                                                      <TableColumn prefWidth="75.9999771118164" text="Full name" />
+                                                      <TableColumn prefWidth="58.39996337890625" text="Number" />
+                                                      <TableColumn prefWidth="114.39996337890625" text="Security Number" />
+                                                      <TableColumn prefWidth="73.60003662109375" text="Status" />
+                                                      <TableColumn prefWidth="73.60003662109375" text="Allergies" />
+                                                      <TableColumn prefWidth="73.60003662109375" text="Total Spent" />
+                                                      <TableColumn prefWidth="73.60003662109375" text="password" />
+                                                      <TableColumn prefWidth="73.60003662109375" text="Modify Date" />
+                                                      <TableColumn prefWidth="73.60003662109375" text="Date" />
+                                                   </columns>
+                                                </TableView>
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </ScrollPane>
+                                    <Label layoutX="33.0" layoutY="25.0" prefHeight="20.0" prefWidth="119.0" text="Search Client :" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Arial Italic" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="152.0" layoutY="21.0" prefHeight="27.0" prefWidth="182.0" promptText="Search Employee" />
+                                    <Label layoutX="345.0" layoutY="25.0" prefHeight="20.0" prefWidth="33.0" text="By :" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Arial Italic" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <ComboBox layoutX="379.0" layoutY="22.0" prefWidth="150.0" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="541.0" prefWidth="282.0" stylesheets="@../../../../../Design/PageDesign.css" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="radius" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <Label layoutX="90.0" layoutY="23.0" prefHeight="20.0" prefWidth="99.0" text="Manage Clients" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Arial Italic" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Line endX="100.0" layoutX="141.0" layoutY="50.0" startX="-100.0" />
+                                    <TextField layoutX="93.0" layoutY="64.0" prefHeight="27.0" prefWidth="180.0" promptText="ID" />
+                                    <TextField layoutX="92.0" layoutY="94.0" prefHeight="27.0" prefWidth="182.0" promptText="Full Name" />
+                                    <TextField layoutX="92.0" layoutY="127.0" prefHeight="27.0" prefWidth="182.0" promptText="Security Number" />
+                                    <Label layoutX="21.0" layoutY="68.0" prefHeight="20.0" prefWidth="70.0" text="ID :" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Arial Italic" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="21.0" layoutY="98.0" prefHeight="20.0" prefWidth="70.0" text="Full name:" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Arial Italic" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="21.0" layoutY="131.0" prefHeight="20.0" prefWidth="70.0" text="Security Num :" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Arial Italic" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="92.0" layoutY="157.0" prefHeight="27.0" prefWidth="182.0" promptText="Password" />
+                                    <Label layoutX="21.0" layoutY="161.0" prefHeight="20.0" prefWidth="70.0" text="Password:" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Arial Italic" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField layoutX="92.0" layoutY="189.0" prefHeight="27.0" prefWidth="182.0" promptText="Phone Number" />
+                                    <Label layoutX="21.0" layoutY="193.0" prefHeight="20.0" prefWidth="70.0" text="Number :" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Arial Italic" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Button layoutX="41.0" layoutY="323.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Update" />
+                                    <Button layoutX="140.0" layoutY="395.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Delete" />
+                                    <Button layoutX="140.0" layoutY="323.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Add" />
+                                    <Button layoutX="41.0" layoutY="395.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Clear" />
+                                    <Button layoutX="42.0" layoutY="466.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="185.0" text="Import" />
+                                    <CheckBox layoutX="23.0" layoutY="270.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="122.0" text="Allergies">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <TextField layoutX="92.0" layoutY="224.0" prefHeight="27.0" prefWidth="182.0" promptText="confirm ?" />
+                                    <Label layoutX="21.0" layoutY="228.0" prefHeight="20.0" prefWidth="70.0" text="Status :" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Arial Italic" size="14.0" />
+                                       </font>
+                                    </Label>
                                  </children>
                               </AnchorPane>
                            </children>
