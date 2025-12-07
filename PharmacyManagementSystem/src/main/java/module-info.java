@@ -13,6 +13,7 @@ module fr.ece.pharmacymanagementsystem {
     requires java.sql;
     requires javafx.base;
     requires javafx.graphics;
+    requires java.desktop;
 
     opens fr.ece.pharmacymanagementsystem to javafx.fxml;
     exports fr.ece.pharmacymanagementsystem;
