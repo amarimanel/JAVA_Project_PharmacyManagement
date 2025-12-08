@@ -1,5 +1,7 @@
 package fr.ece.pharmacymanagementsystem;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -7,20 +9,32 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.awt.event.ActionEvent;
+import javafx.event.ActionEvent;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+import static fr.ece.pharmacymanagementsystem.getData.admin_ID;
+import static fr.ece.pharmacymanagementsystem.getData.admin_username;
 
 public class UserDashboardControl implements Initializable {
 
     @FXML
     private Label ID;
+
+    @FXML
+    private TableView<EmployeeData> addEmployee_tableView;
 
     @FXML
     private Button client_ClearBtn;
@@ -158,10 +172,10 @@ public class UserDashboardControl implements Initializable {
     private TextField employee_fillId;
 
     @FXML
-    private TableColumn<?, ?> employee_fullName;
+    private TableColumn<EmployeeData, String> employee_fullName;
 
     @FXML
-    private TableColumn<?, ?> employee_id;
+    private TableColumn<EmployeeData, String> employee_id;
 
     @FXML
     private Button employee_importBtn;
@@ -173,49 +187,51 @@ public class UserDashboardControl implements Initializable {
     private TextField employee_search;
 
     @FXML
-    private ComboBox<?> employee_searchByType;
+    private ComboBox<String> employee_searchByType;
 
     @FXML
     private Button employee_updateBtn;
 
     @FXML
-    private TableColumn<?, ?> employee_username;
+    private TableColumn<EmployeeData, String> employee_username;
 
     @FXML
     private Button product_ClearBtn;
+    @FXML
+    private TableView<ProductsData> addProduct_tableView;
 
     @FXML
-    private TableColumn<?, ?> product_Price;
+    private TableColumn<ProductsData,String> product_Price;
 
     @FXML
-    private TableColumn<?, ?> product_Quantity;
+    private TableColumn<ProductsData,String> product_Quantity;
 
     @FXML
     private Button product_addBtn;
 
     @FXML
-    private TableColumn<?, ?> product_brandName;
+    private TableColumn<ProductsData,String> product_brandName;
 
     @FXML
-    private TableColumn<?, ?> product_category;
+    private TableColumn<ProductsData,String> product_category;
 
     @FXML
     private Button product_deleteBtn;
 
     @FXML
-    private TableColumn<?, ?> product_expiryDate;
+    private TableColumn<ProductsData,String> product_expiryDate;
 
     @FXML
     private Button product_importBtn;
 
     @FXML
-    private TableColumn<?, ?> product_medcineId;
+    private TableColumn<ProductsData,String> product_medcineId;
 
     @FXML
     private AnchorPane product_page;
 
     @FXML
-    private TableColumn<?, ?> product_productName;
+    private TableColumn<ProductsData,String> product_productName;
 
     @FXML
     private TextField product_search;
@@ -236,16 +252,22 @@ public class UserDashboardControl implements Initializable {
     private TextField product_searchproductName;
 
     @FXML
+    private Label minimizePage;
+
+    @FXML
+    private Label ClosePage;
+
+    @FXML
     private ComboBox<?> product_selectByCategory;
 
     @FXML
-    private ComboBox<?> product_selectCategory;
+    private ComboBox<String> product_selectCategory;
 
     @FXML
     private DatePicker product_selectDate;
 
     @FXML
-    private TableColumn<?, ?> product_status;
+    private TableColumn<ProductsData,String> product_status;
 
     @FXML
     private Button product_updateBtn;
@@ -259,21 +281,81 @@ public class UserDashboardControl implements Initializable {
     @FXML
     private ImageView user_logo;
 
+
+    @FXML
+    private AnchorPane main_form;
+
+
+
     @FXML
     private Label username;
+
+    private Connection connect;
+    private PreparedStatement prepare;
+    private ResultSet result;
+
+
+    public ObservableList<ProductsData> addProductsData(){
+
+        String sql = "SELECT * FROM product";
+
+        ObservableList<ProductsData> listData = FXCollections.observableArrayList();
+
+        connect = DataBase.connectDB();
+
+        try{
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            ProductsData prodData;
+            while(result.next()){
+
+
+                prodData = new ProductsData(result.getInt("product_id"), result.getString("brand_name")
+                , result.getString("product_name"), result.getString("category"), result.getString("status")
+                , result.getInt("quantity"), result.getDouble("price"), result.getDate("expiry_Date"));
+
+                listData.add(prodData);
+            }
+
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return listData;
+    }
+
+    private ObservableList<ProductsData> addProductsList;
+    public void addProductsShowListData(){
+        addProductsList = addProductsData();
+
+        product_medcineId.setCellValueFactory(new PropertyValueFactory<>("medcineId"));
+        product_brandName.setCellValueFactory(new PropertyValueFactory<>("brandName"));
+        product_productName.setCellValueFactory(new PropertyValueFactory<>("productName"));
+        product_category.setCellValueFactory(new PropertyValueFactory<>("category"));
+        product_status.setCellValueFactory(new PropertyValueFactory<>("status"));
+        product_Quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        product_Price.setCellValueFactory(new PropertyValueFactory<>("price"));
+        product_expiryDate.setCellValueFactory(new PropertyValueFactory<>("expiry_Date"));
+
+        addProduct_tableView.setItems(addProductsList);
+
+
+
+    }
 
     private double x = 0;
     private double y = 0;
 
-    public void logout(){
-        try{
+    public void logout() {
+        try {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation Message");
             alert.setHeaderText(null);
             alert.setContentText("Are You Sure You Want To Logout");
             Optional<ButtonType> option = alert.showAndWait();
 
-            if (option.get() == ButtonType.OK){
+            if (option.get() == ButtonType.OK) {
 
                 //pour farmer dahsboard
                 signout_link.getScene().getWindow().hide();
@@ -300,66 +382,146 @@ public class UserDashboardControl implements Initializable {
                 stage.show();
 
 
-
             }
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    public void minimize(){
 
+       Stage stage = (Stage)main_form.getScene().getWindow();
+       stage.setIconified(true);
+
+    }
+
+    public void close(){
+        System.exit(0);
+    }
 
 
     public void switchForm(ActionEvent event) {
-        // 1. Logic to Switch Forms based on the button clicked
-        // We check which button triggered the event using event.getSource()
 
         if (event.getSource() == dashboard_btn || event.getSource() == dashboard_salesRevenueBtn) {
-            // Show Dashboard, Hide others
+
             dashboard.setVisible(true);
             client_page.setVisible(false);
             employee_page.setVisible(false);
             product_page.setVisible(false);
 
-            // Optional: Reload dashboard specific data here
-            // dashboardChart();
-
         } else if (event.getSource() == dashboard_manageClientsBtn) {
-            // Show Clients, Hide others
+
             dashboard.setVisible(false);
             client_page.setVisible(true);
             employee_page.setVisible(false);
             product_page.setVisible(false);
 
-            // Optional: Load client data
-            // showClientData();
-
         } else if (event.getSource() == dashboard_manageEmployeesBtn) {
-            // Show Employees, Hide others
+
             dashboard.setVisible(false);
             client_page.setVisible(false);
             employee_page.setVisible(true);
             product_page.setVisible(false);
 
-            // Optional: Load employee data
-            // showEmployeeData();
-
         } else if (event.getSource() == dashboard_manageProductsBtn) {
-            // Show Products, Hide others
+
             dashboard.setVisible(false);
             client_page.setVisible(false);
             employee_page.setVisible(false);
             product_page.setVisible(true);
-
-            // Optional: Load product data
-            // showProductData();
         }
     }
+
+ /*   public void displayUsernameAndId(){
+
+        String sql = "SELECT * FROM administrator WHERE username='"
+                + admin_ID +  "'";
+
+         connect = DataBase.connectDB();
+
+         try{
+             prepare = connect.prepareStatement(sql);
+             result = prepare.executeQuery();
+
+             if(result.next()){
+                 ID.setText(result.getString("administrator_id"));
+                 String TempUsername = result.getString("username");
+                 TempUsername = TempUsername.substring(0, 1).toUpperCase() + TempUsername.substring(1);
+                 username.setText(result.getString(TempUsername));
+             }
+
+
+         }catch(Exception e){
+             e.printStackTrace();
+         }
+
+    }*/
+
+
+    private final ObservableList<String> categoryList = FXCollections.observableArrayList(
+            "Painkillers", "Vitamins", "Antibiotics", "Supplements", "Cosmetics"
+    );
+
+    @FXML
+    public void CategoryBox() {
+        product_selectCategory.setItems(categoryList);
+    }
+
+
+    public ObservableList<EmployeeData> addEmployeesData() {
+
+        String sql = "SELECT * FROM admin";
+        ObservableList<EmployeeData> listData = FXCollections.observableArrayList();
+
+        connect = DataBase.connectDB();
+
+        try {
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            EmployeeData empData;
+            while (result.next()) {
+                empData = new EmployeeData(
+                        result.getString("email"),
+                        result.getString("username"),
+                        result.getString("password"),
+                        result.getString("full_name"),
+                        result.getDate("date")
+                );
+                listData.add(empData);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listData;
+    }
+
+
+    private ObservableList<EmployeeData> addEmployeesList;
+
+    // Méthode pour afficher les employés dans le TableView
+    public void addEmployeesShowListData() {
+        addEmployeesList = addEmployeesData();
+
+        employee_email.setCellValueFactory(new PropertyValueFactory<>("email"));
+        employee_username.setCellValueFactory(new PropertyValueFactory<>("username"));
+        employee_fullName.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+        employee_date.setCellValueFactory(new PropertyValueFactory<>("date"));
+
+        addEmployee_tableView.setItems(addEmployeesList); // ton TableView pour les employés
+    }
+
+
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //displayUsernameAndId();
 
+        addProductsShowListData();
+        CategoryBox();
+        addEmployeesShowListData();
     }
 }

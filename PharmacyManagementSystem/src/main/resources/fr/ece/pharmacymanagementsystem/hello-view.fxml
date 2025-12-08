@@ -20,11 +20,6 @@
          <children>
             <AnchorPane fx:id="login_form" layoutX="105.0" layoutY="124.0" prefHeight="500.0" prefWidth="350.4" styleClass="white-bg" stylesheets="@../../../../../Design/PageDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label layoutX="83.0" layoutY="92.0" prefHeight="38.0" prefWidth="179.0" text="Login Account" textFill="#6bb548">
-                     <font>
-                        <Font name="System Bold" size="25.0" />
-                     </font>
-                  </Label>
                   <Label layoutX="124.0" layoutY="130.0" text="Employee Portal" />
                   <TextField fx:id="login_username" layoutX="56.0" layoutY="170.0" prefHeight="38.0" prefWidth="238.0" promptText="Username" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
                   <PasswordField fx:id="login_password" layoutX="56.0" layoutY="221.0" prefHeight="38.0" prefWidth="238.0" promptText="Password" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
@@ -58,9 +53,14 @@
                   <Hyperlink fx:id="login_forgotPassword" layoutX="116.0" layoutY="432.0" onAction="#switchForm" prefHeight="26.0" prefWidth="114.0" text="Forgot Password" />
                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="75.0" pickOnBounds="true" preserveRatio="true" styleClass="white-bg" AnchorPane.bottomAnchor="390.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="0.0">
                      <image>
-                        <Image url="@../../../../../../../../Downloads/Gemini_Generated_Image_s2sdf7s2sdf7s2sd-removebg-preview.png" />
+                        <Image url="@../../../photo/Gemini_Generated_Image_s2sdf7s2sdf7s2sd-removebg-preview.png" />
                      </image>
                   </ImageView>
+                  <Label layoutX="83.0" layoutY="90.0" prefHeight="38.0" prefWidth="179.0" text="Login Account" textFill="#6bb548">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="register_form" layoutX="10.0" layoutY="10.0" prefHeight="500.0" prefWidth="350.4" styleClass="white-bg" stylesheets="@../../../../../Design/PageDesign.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

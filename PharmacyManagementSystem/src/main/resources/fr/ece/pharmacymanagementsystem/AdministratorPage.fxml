@@ -59,7 +59,7 @@
                   <Hyperlink fx:id="login_forgotPassword" layoutX="116.0" layoutY="432.0" onAction="#switchForm" prefHeight="26.0" prefWidth="114.0" text="Forgot Password" />
                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="75.0" pickOnBounds="true" preserveRatio="true" styleClass="white-bg" AnchorPane.bottomAnchor="390.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="0.0">
                      <image>
-                        <Image url="@../../../../../../../../Downloads/Gemini_Generated_Image_s2sdf7s2sdf7s2sd-removebg-preview.png" />
+                        <Image url="@../../../photo/Gemini_Generated_Image_s2sdf7s2sdf7s2sd-removebg-preview.png" />
                      </image>
                   </ImageView>
                </children>

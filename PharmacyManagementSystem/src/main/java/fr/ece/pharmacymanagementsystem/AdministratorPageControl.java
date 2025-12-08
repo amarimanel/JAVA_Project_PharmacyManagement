@@ -9,14 +9,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -35,7 +31,7 @@ public class AdministratorPageControl implements Initializable {
     private ComboBox<String> comboBox;
 
     @FXML
-    private TextField login_AdministratorID;
+    private TextField login_administratorID;
 
     @FXML
     private CheckBox login_checkBox;
@@ -129,12 +125,13 @@ public class AdministratorPageControl implements Initializable {
 
     private final AlertMessage alert = new AlertMessage();
 
-
+    private int x = 0;
+    private int y = 0;
     @FXML
     void loginAccount() {
 
 
-        if(login_AdministratorID.getText().isEmpty() ||
+        if(login_administratorID.getText().isEmpty() ||
         login_password.getText().isEmpty()){
             alert.errorMessage("Please fill all the fields");
         }else {
@@ -160,14 +157,28 @@ public class AdministratorPageControl implements Initializable {
                 }
 
                 prepare = connect.prepareStatement(sql);
-                prepare.setString(1, login_AdministratorID.getText());
+                prepare.setString(1, login_administratorID.getText());
                 prepare.setString(2, login_password.getText());
                 result = prepare.executeQuery();
 
                 if (result.next()){
-                    // if correct username and password
+                    getData.admin_ID = login_administratorID.getText();
 
+                    // if correct username and password
+                    Parent root = FXMLLoader.load(getClass().getResource("MainForm.fxml"));
+                    Stage stage = new Stage();
+
+                    stage.setTitle("Pharmacy Management System");
+
+                    stage.setMinHeight(500);
+                    stage.setMinWidth(350);
+
+                    stage.setScene( new Scene(root));
+                    stage.show();
+
+                    login_user.getScene().getWindow().hide();
                     alert.successMessage("Login Successful");
+
                 }else{
                     alert.errorMessage("Incorrect Admin ID or Password");
                 }
@@ -178,6 +189,8 @@ public class AdministratorPageControl implements Initializable {
         }
 
     }
+
+
 
     @FXML
     void loginShowPassword() {
@@ -255,6 +268,7 @@ public class AdministratorPageControl implements Initializable {
                     prepare.setString(5,String.valueOf(sqlDate));
 
                     prepare.executeUpdate();
+
 
                     alert.successMessage("Successfully registered");
 
