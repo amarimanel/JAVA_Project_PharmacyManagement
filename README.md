@@ -42,3 +42,7 @@ Le projet n’est pas encore complet, certaines fonctionnalités avancées ou co
 Remarques
 
 Ce projet constitue une première expérience de développement d’une application complète et complexe. Il sert de base solide pour des améliorations futures et une extension des fonctionnalités.
+
+
+Une video pour voir le progrée de notre application:
+https://youtu.be/czrdtl_Tswc
