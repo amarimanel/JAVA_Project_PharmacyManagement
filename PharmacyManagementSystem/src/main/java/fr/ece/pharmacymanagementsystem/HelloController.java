@@ -17,6 +17,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -130,34 +131,28 @@ public class HelloController implements Initializable {
 
     private final AlertMessage alert = new  AlertMessage();
 
+    private double x = 0;
+    private double y = 0;
 
-    public void loginAccount(){
+    public void loginAccount() {
 
-        if(login_username.getText().isEmpty() || login_password.getText().isEmpty()){
-
+        if (login_username.getText().isEmpty() || login_password.getText().isEmpty()) {
             alert.errorMessage("Incorrect Username or Password");
-        } else{
+        } else {
 
             String sql = "SELECT * FROM admin WHERE username = ? AND password = ?";
-
             connect = DataBase.connectDB();
 
-            try{
-
-                if (!login_showPassword.isVisible()){
-
-                    if (!login_password.getText().equals(login_showPassword.getText())){
-
+            try {
+                // Logic to sync password field and show password field
+                if (!login_showPassword.isVisible()) {
+                    if (!login_password.getText().equals(login_showPassword.getText())) {
                         login_showPassword.setText(login_password.getText());
                     }
-
-                }else{
-
-                    if (!login_showPassword.getText().equals(login_password.getText())){
-
+                } else {
+                    if (!login_showPassword.getText().equals(login_password.getText())) {
                         login_password.setText(login_showPassword.getText());
                     }
-
                 }
 
                 prepare = connect.prepareStatement(sql);
@@ -165,21 +160,46 @@ public class HelloController implements Initializable {
                 prepare.setString(2, login_password.getText());
                 result = prepare.executeQuery();
 
-                if (result.next()){
-                    // if correct username and password
+                if (result.next()) {
+                    // --- LOGIN SUCCESSFUL LOGIC STARTS HERE ---
+
+                    // 1. Save the username to the Session (Global variable)
+                    // This allows the Employee Dashboard to know who logged in
+                    getData.admin_username = login_username.getText();
 
                     alert.successMessage("Login Successful");
-                }else{
+
+                    // 2. Hide the Login Window
+                    // Note: Ensure 'login_username' or your login button is linked in FXML
+                    login_username.getScene().getWindow().hide();
+
+                    // 3. Load the Employee Dashboard
+                    Parent root = FXMLLoader.load(getClass().getResource("EmployeeForm.fxml"));
+                    Stage stage = new Stage();
+                    Scene scene = new Scene(root);
+
+                    // Optional: Dragging logic (if you want the window to be draggable)
+                    root.setOnMousePressed((event) -> {
+                        x = event.getSceneX();
+                        y = event.getSceneY();
+                    });
+                    root.setOnMouseDragged((event) -> {
+                        stage.setX(event.getScreenX() - x);
+                        stage.setY(event.getScreenY() - y);
+                    });
+
+                    stage.initStyle(StageStyle.TRANSPARENT);
+                    stage.setScene(scene);
+                    stage.show();
+
+                } else {
                     alert.errorMessage("Incorrect Username or Password");
                 }
 
-
-            }catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
-
     }
 
 
