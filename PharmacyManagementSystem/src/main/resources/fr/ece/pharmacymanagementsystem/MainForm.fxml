@@ -25,7 +25,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.ece.pharmacymanagementsystem.UserDashboardControl">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.ece.pharmacymanagementsystem.AdministratorDashboardControl">
    <children>
       <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -108,7 +108,7 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f2f5f3;" stylesheets="@../../../../../Design/PageDesign.css" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="dashboard" prefHeight="569.6" prefWidth="880.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="dashboard" prefHeight="569.6" prefWidth="880.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane prefHeight="163.0" prefWidth="850.0" style="-fx-background-color: d4d9d6;" stylesheets="@../../../../../Design/PageDesign.css" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="14.0">
                                  <styleClass>
@@ -133,7 +133,7 @@
                                                          <children>
                                                             <ImageView fitHeight="74.0" fitWidth="73.0" layoutX="14.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
-                                                                  <Image url="@../../../../../../../../Downloads/Gemini_Generated_Image_z8lv3bz8lv3bz8lv-removebg-preview.png" />
+                                                                  <Image url="@../../../photo/Gemini_Generated_Image_z8lv3bz8lv3bz8lv-removebg-preview.png" />
                                                                </image>
                                                             </ImageView>
                                                             <Label layoutX="104.0" layoutY="92.0" text="Total Clients">
@@ -156,7 +156,7 @@
                                                          <children>
                                                             <ImageView fitHeight="74.0" fitWidth="73.0" layoutX="14.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
-                                                                  <Image url="@../../../../../../../../Downloads/Gemini_Generated_Image_orh8msorh8msorh8-removebg-preview.png" />
+                                                                  <Image url="@../../../photo/Gemini_Generated_Image_orh8msorh8msorh8-removebg-preview.png" />
                                                                </image>
                                                             </ImageView>
                                                             <Label layoutX="102.0" layoutY="92.0" text="Total Revenue">
@@ -185,10 +185,10 @@
                                                          <children>
                                                             <ImageView fitHeight="74.0" fitWidth="73.0" layoutX="14.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
-                                                                  <Image url="@../../../../../../../../Downloads/Gemini_Generated_Image_k1auvjk1auvjk1au-removebg-preview.png" />
+                                                                  <Image url="@../../../photo/Gemini_Generated_Image_k1auvjk1auvjk1au-removebg-preview.png" />
                                                                </image>
                                                             </ImageView>
-                                                            <Label layoutX="94.0" layoutY="92.0" text="Available Medcines">
+                                                            <Label layoutX="94.0" layoutY="92.0" text="Available Products">
                                                                <font>
                                                                   <Font name="Arial Bold Italic" size="12.0" />
                                                                </font>
@@ -269,7 +269,7 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox layoutX="536.0" layoutY="42.0" prefHeight="26.0" prefWidth="152.0" />
+                                    <ComboBox fx:id="product_statusInput" layoutX="536.0" layoutY="42.0" prefHeight="26.0" prefWidth="152.0" />
                                     <Label layoutX="397.0" layoutY="76.0" prefHeight="24.0" prefWidth="138.0" text="Qantity :">
                                        <font>
                                           <Font size="14.0" />
@@ -287,11 +287,11 @@
                                           <Font name="Arial Italic" size="14.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="product_updateBtn" layoutX="707.0" layoutY="38.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="62.0" text="Update" />
+                                    <Button fx:id="product_updateBtn" layoutX="707.0" layoutY="38.0" mnemonicParsing="false" onAction="#productUpdate" prefHeight="46.0" prefWidth="62.0" text="Update" />
                                     <Button fx:id="product_importBtn" layoutX="710.0" layoutY="155.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="126.0" text="Import" />
-                                    <Button fx:id="product_addBtn" layoutX="773.0" layoutY="38.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="62.0" text="Add" />
-                                    <Button fx:id="product_ClearBtn" layoutX="707.0" layoutY="92.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="62.0" text="Clear" />
-                                    <Button fx:id="product_deleteBtn" layoutX="773.0" layoutY="92.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="62.0" text="Delete" />
+                                    <Button fx:id="product_addBtn" layoutX="773.0" layoutY="38.0" mnemonicParsing="false" onAction="#productAdd" prefHeight="46.0" prefWidth="62.0" text="Add" />
+                                    <Button fx:id="product_ClearBtn" layoutX="707.0" layoutY="92.0" mnemonicParsing="false" onAction="#productClear" prefHeight="46.0" prefWidth="62.0" text="Clear" />
+                                    <Button fx:id="product_deleteBtn" layoutX="773.0" layoutY="92.0" mnemonicParsing="false" onAction="#productDelete" prefHeight="46.0" prefWidth="62.0" text="Delete" />
                                     <TextField fx:id="product_searchPrice" layoutX="536.0" layoutY="155.0" promptText="0.0 euro" />
                                     <Label layoutX="397.0" layoutY="157.0" prefHeight="24.0" prefWidth="138.0" text="Price :">
                                        <font>
@@ -314,7 +314,7 @@
                                        </font>
                                     </Label>
                                     <ComboBox fx:id="product_selectByCategory" layoutX="545.0" layoutY="15.0" prefHeight="26.0" prefWidth="152.0" promptText="Category" />
-                                    <TableView fx:id="addProduct_tableView" layoutX="13.0" layoutY="49.0" prefHeight="254.0" prefWidth="834.0" stylesheets="@../../../../../Design/DashboardDesign.css">
+                                    <TableView fx:id="addProduct_tableView" layoutX="13.0" layoutY="49.0" onMouseClicked="#productSelect" prefHeight="254.0" prefWidth="834.0" stylesheets="@../../../../../Design/DashboardDesign.css">
                                       <columns>
                                         <TableColumn fx:id="product_medcineId" prefWidth="113.60000610351562" text="Medcine ID" />
                                         <TableColumn fx:id="product_brandName" prefWidth="119.199951171875" text="Brand Name" />
@@ -334,7 +334,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="employee_page" prefHeight="569.6" prefWidth="880.0" stylesheets="@../../../../../Design/PageDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="employee_page" prefHeight="569.6" prefWidth="880.0" stylesheets="@../../../../../Design/PageDesign.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane prefHeight="546.0" prefWidth="554.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
                                  <stylesheets>
@@ -347,7 +347,7 @@
                                     <String fx:value="radius" />
                                  </styleClass>
                                  <children>
-                                    <TableView fx:id="addEmployee_tableView" layoutX="12.0" layoutY="63.0" prefHeight="467.0" prefWidth="518.0">
+                                    <TableView fx:id="addEmployee_tableView" layoutX="12.0" layoutY="63.0" onMouseClicked="#employeeSelect" prefHeight="467.0" prefWidth="518.0">
                                       <columns>
                                         <TableColumn fx:id="employee_id" prefWidth="75.0" text="ID" />
                                         <TableColumn fx:id="employee_fullName" prefWidth="98.4000015258789" text="Full name" />
@@ -412,10 +412,10 @@
                                           <Font name="Arial Italic" size="14.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="employee_updateBtn" layoutX="41.0" layoutY="323.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Update" />
-                                    <Button fx:id="employee_deleteBtn" layoutX="140.0" layoutY="395.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Delete" />
-                                    <Button fx:id="employee_addBtn" layoutX="140.0" layoutY="323.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Add" />
-                                    <Button fx:id="employee_clearBtn" layoutX="41.0" layoutY="395.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Clear" />
+                                    <Button fx:id="employee_updateBtn" layoutX="41.0" layoutY="323.0" mnemonicParsing="false" onAction="#employeeUpdate" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Update" />
+                                    <Button fx:id="employee_deleteBtn" layoutX="140.0" layoutY="395.0" mnemonicParsing="false" onAction="#employeeDelete" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Delete" />
+                                    <Button fx:id="employee_addBtn" layoutX="140.0" layoutY="323.0" mnemonicParsing="false" onAction="#employeeAdd" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Add" />
+                                    <Button fx:id="employee_clearBtn" layoutX="41.0" layoutY="395.0" mnemonicParsing="false" onAction="#employeeClear" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Clear" />
                                     <Button fx:id="employee_importBtn" layoutX="42.0" layoutY="466.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="185.0" text="Import" />
                                     <DatePicker fx:id="employee_FillDate" layoutX="85.0" layoutY="265.0" />
                                  </children>
@@ -439,7 +439,7 @@
                                        <content>
                                           <AnchorPane prefHeight="534.0" prefWidth="762.0">
                                              <children>
-                                                <TableView prefHeight="534.0" prefWidth="744.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="0.0">
+                                                <TableView fx:id="client_tableView" onMouseClicked="#clientSelect" prefHeight="534.0" prefWidth="744.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="0.0">
                                                    <columns>
                                                       <TableColumn fx:id="client_id" prefWidth="43.20001029968262" text="ID" />
                                                       <TableColumn fx:id="client_fullName" prefWidth="75.9999771118164" text="Full name" />
@@ -514,10 +514,10 @@
                                           <Font name="Arial Italic" size="14.0" />
                                        </font>
                                     </Label>
-                                    <Button fx:id="client_updateBtn" layoutX="41.0" layoutY="323.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Update" />
-                                    <Button fx:id="client_DeleteBtn" layoutX="140.0" layoutY="395.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Delete" />
-                                    <Button fx:id="client_addBtn" layoutX="140.0" layoutY="323.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Add" />
-                                    <Button fx:id="client_ClearBtn" layoutX="41.0" layoutY="395.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Clear" />
+                                    <Button fx:id="client_updateBtn" layoutX="41.0" layoutY="323.0" mnemonicParsing="false" onAction="#clientUpdate" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Update" />
+                                    <Button fx:id="client_DeleteBtn" layoutX="140.0" layoutY="395.0" mnemonicParsing="false" onAction="#clientDelete" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Delete" />
+                                    <Button fx:id="client_addBtn" layoutX="140.0" layoutY="323.0" mnemonicParsing="false" onAction="#clientAdd" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Add" />
+                                    <Button fx:id="client_ClearBtn" layoutX="41.0" layoutY="395.0" mnemonicParsing="false" onAction="#clientClear" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Clear" />
                                     <Button fx:id="client_importBtn" layoutX="42.0" layoutY="466.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="185.0" text="Import" />
                                     <CheckBox fx:id="client_allergiesCheckBox" layoutX="23.0" layoutY="270.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="122.0" text="Allergies">
                                        <font>

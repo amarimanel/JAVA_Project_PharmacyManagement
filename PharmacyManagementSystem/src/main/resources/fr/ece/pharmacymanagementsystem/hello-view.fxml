@@ -65,7 +65,7 @@
             </AnchorPane>
             <AnchorPane fx:id="register_form" layoutX="10.0" layoutY="10.0" prefHeight="500.0" prefWidth="350.4" styleClass="white-bg" stylesheets="@../../../../../Design/PageDesign.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label layoutX="71.0" layoutY="90.0" prefHeight="38.0" prefWidth="205.0" text="Register Account" textFill="#6bb548">
+                  <Label layoutX="72.0" layoutY="90.0" prefHeight="38.0" prefWidth="205.0" text="Register Account" textFill="#6bb548">
                      <font>
                         <Font name="System Bold" size="25.0" />
                      </font>
@@ -98,7 +98,7 @@
                   <TextField fx:id="register_email" layoutX="56.0" layoutY="189.0" prefHeight="38.0" prefWidth="238.0" promptText="Email Address" styleClass="text-field" stylesheets="@../../../../../Design/PageDesign.css" />
                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="75.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="390.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0">
                      <image>
-                        <Image url="@../../../../../../../../Downloads/Gemini_Generated_Image_s2sdf7s2sdf7s2sd-removebg-preview.png" />
+                        <Image url="@../../../photo/Gemini_Generated_Image_s2sdf7s2sdf7s2sd-removebg-preview.png" />
                      </image>
                   </ImageView>
                </children>
@@ -144,7 +144,7 @@
                   </TextField>
                   <ImageView fitHeight="109.0" fitWidth="206.0" layoutX="74.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="390.0" AnchorPane.leftAnchor="75.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="0.0">
                      <image>
-                        <Image url="@../../../../../../../../Downloads/Gemini_Generated_Image_s2sdf7s2sdf7s2sd-removebg-preview.png" />
+                        <Image url="@../../../photo/Gemini_Generated_Image_s2sdf7s2sdf7s2sd-removebg-preview.png" />
                      </image>
                   </ImageView>
                </children>

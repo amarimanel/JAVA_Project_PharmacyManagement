@@ -20,6 +20,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -513,6 +514,75 @@ public class UserDashboardControl implements Initializable {
         addEmployee_tableView.setItems(addEmployeesList); // ton TableView pour les employés
     }
 
+
+
+    //testing code not sure of again, to be verified:
+   /* private void addProduct() {
+        // Récupérer les valeurs
+        String id = product_searchMedcineId.getText();
+        String name = product_searchproductName.getText();
+        String brand = product_searchBrandName.getText();
+        String category = product_selectCategory.getValue();
+        String price = product_searchPrice.getText();
+        String quantity = product_searchQuantity.getText();
+        String expiry = product_selectDate.getValue() != null ? product_selectDate.getValue().toString() : "";
+        String status = "Available";
+
+        // Vérification simple
+        if (id.isEmpty() || name.isEmpty() || brand.isEmpty() || category == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText(null);
+            alert.setContentText("Please fill all required fields!");
+            alert.showAndWait();
+            return;
+        }
+
+        // ajouter dans la table
+        ProductsData product = new ProductsData(id, name, brand, category, price, quantity, expiry, status);
+        listData.add(product);
+
+        // base sql
+        String insertQuery = "INSERT INTO products (medcineId, productName, brandName, category, price, quantity, expiryDate, status) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+        try (Connection conn = DataBase.getConnection();
+             java.sql.PreparedStatement pst = conn.prepareStatement(insertQuery)) {
+
+            pst.setString(1, id);
+            pst.setString(2, name);
+            pst.setString(3, brand);
+            pst.setString(4, category);
+            pst.setString(5, price);
+            pst.setString(6, quantity);
+            pst.setString(7, expiry);
+            pst.setString(8, status);
+
+            pst.executeUpdate();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText(null);
+            alert.setContentText("Product added successfully!");
+            alert.showAndWait();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Database Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Error adding product to the database:\n" + e.getMessage());
+            alert.showAndWait();
+        }
+
+        product_searchMedcineId.clear();
+        product_searchproductName.clear();
+        product_searchBrandName.clear();
+        product_searchPrice.clear();
+        product_searchQuantity.clear();
+        product_selectCategory.getSelectionModel().clearSelection();
+        product_selectDate.setValue(null);
+    }*/
 
 
 

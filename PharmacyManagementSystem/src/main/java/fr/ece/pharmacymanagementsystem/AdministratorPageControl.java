@@ -162,7 +162,7 @@ public class AdministratorPageControl implements Initializable {
                 result = prepare.executeQuery();
 
                 if (result.next()){
-                    getData.admin_ID = login_administratorID.getText();
+                    getData.admin_username = login_administratorID.getText();
 
                     // if correct username and password
                     Parent root = FXMLLoader.load(getClass().getResource("MainForm.fxml"));
@@ -494,6 +494,8 @@ public class AdministratorPageControl implements Initializable {
         login_user.setItems(listData);
 
     }
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
