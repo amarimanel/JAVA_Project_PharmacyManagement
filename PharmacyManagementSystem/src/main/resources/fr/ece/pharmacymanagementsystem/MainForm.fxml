@@ -102,6 +102,7 @@
                               <Image url="@../../../photo/Gemini_Generated_Image_otd2h6otd2h6otd2-removebg-preview.png" />
                            </image>
                         </ImageView>
+                        <Line endX="100.0" layoutX="115.0" layoutY="473.0" startX="-100.0" />
                      </children>
                   </AnchorPane>
                </left>

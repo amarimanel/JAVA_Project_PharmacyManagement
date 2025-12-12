@@ -416,11 +416,15 @@ public class AdministratorPageControl implements Initializable {
             register_form.setVisible(true);
             reset_form.setVisible(false);
 
-        }else if (event.getSource() == reset_form){
+        }else if (event.getSource() == login_forgotPassword){
             login_form.setVisible(false);
             register_form.setVisible(false);
             reset_form.setVisible(true);
-        }
+        }else if (event.getSource() == reset_loginHere){
+        login_form.setVisible(true);
+        register_form.setVisible(false);
+        reset_form.setVisible(false);
+    }
 
     }
     public void switchPage(){

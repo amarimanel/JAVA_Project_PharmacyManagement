@@ -47,12 +47,12 @@
                               <Font name="Arial Italic" size="14.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="52.0" fitWidth="21.0" layoutX="1072.0" layoutY="10.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="52.0" fitWidth="21.0" layoutX="1082.0" layoutY="15.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../photo/Gemini_Generated_Image_a6ehi6a6ehi6a6eh-removebg-preview.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="52.0" fitWidth="21.0" layoutX="1036.0" layoutY="12.0" onMouseClicked="#minimize" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="52.0" fitWidth="21.0" layoutX="1044.0" layoutY="17.0" onMouseClicked="#minimize" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../photo/Gemini_Generated_Image_tvpk24tvpk24tvpk-removebg-preview.png" />
                            </image>
@@ -61,52 +61,53 @@
                   </AnchorPane>
                </top>
                <left>
-                  <AnchorPane prefHeight="526.0" prefWidth="220.0" style="-fx-background-color: d4d9d6;" stylesheets="@../../../../../Design/PageDesign.css" BorderPane.alignment="CENTER">
+                  <AnchorPane prefHeight="526.0" prefWidth="228.0" style="-fx-background-color: d4d9d6;" stylesheets="@../../../../../Design/PageDesign.css" BorderPane.alignment="CENTER">
                      <children>
-                        <Label layoutX="104.0" layoutY="154.0" text="ID :" />
-                        <Line endX="100.0" layoutX="110.0" layoutY="119.0" startX="-100.0" />
-                        <ImageView fx:id="user_logo" fitHeight="89.0" fitWidth="89.0" layoutX="10.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true">
+                        <Label layoutX="115.0" layoutY="152.0" text="ID :" />
+                        <Line endX="100.0" layoutX="121.0" layoutY="117.0" startX="-100.0" />
+                        <ImageView fx:id="user_logo" fitHeight="89.0" fitWidth="89.0" layoutX="21.0" layoutY="128.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../photo/Gemini_Generated_Image_z8lv3bz8lv3bz8lv-removebg-preview.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="ID" layoutX="140.0" layoutY="154.0" text="0001">
+                        <Label fx:id="ID" layoutX="151.0" layoutY="152.0" text="0001">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <Label layoutX="104.0" layoutY="179.0" text="Username :" />
-                        <Label fx:id="username" layoutX="108.0" layoutY="203.0" text="Adminusername" textAlignment="CENTER">
+                        <Label layoutX="115.0" layoutY="177.0" text="Username :" />
+                        <Label fx:id="username" layoutX="119.0" layoutY="201.0" text="Adminusername" textAlignment="CENTER">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <Line endX="100.0" layoutX="110.0" layoutY="232.0" startX="-100.0" />
-                        <Label layoutX="14.0" layoutY="244.0" text="Features" />
-                        <Button fx:id="dashboard_btn" layoutX="12.0" layoutY="269.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="196.0" text="Dashboard" />
-                        <Button fx:id="dashboard_manageProductsBtn" layoutX="10.0" layoutY="313.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="196.0" text="Manage Products" />
-                        <Button fx:id="dashboard_manageClientsBtn" layoutX="14.0" layoutY="403.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="196.0" text="Manage Clients" />
-                        <Hyperlink fx:id="signout_link" layoutX="129.0" layoutY="513.0" onAction="#logout" prefHeight="24.0" prefWidth="64.0" text="Sign Out" />
-                        <ImageView fx:id="signout_icon" fitHeight="122.0" fitWidth="213.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true">
+                        <Line endX="100.0" layoutX="121.0" layoutY="230.0" startX="-100.0" />
+                        <Label layoutX="25.0" layoutY="242.0" text="Features" />
+                        <Button fx:id="dashboard_btn" layoutX="23.0" layoutY="267.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="196.0" text="Dashboard" />
+                        <Button fx:id="dashboard_manageProductsBtn" layoutX="21.0" layoutY="311.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="196.0" text="Manage Products" />
+                        <Button fx:id="dashboard_manageClientsBtn" layoutX="25.0" layoutY="401.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="196.0" text="Manage Clients" />
+                        <Hyperlink fx:id="signout_link" layoutX="140.0" layoutY="511.0" onAction="#logout" prefHeight="24.0" prefWidth="64.0" text="Sign Out" />
+                        <ImageView fx:id="signout_icon" fitHeight="122.0" fitWidth="213.0" layoutX="15.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../photo/Gemini_Generated_Image_s2sdf7s2sdf7s2sd-removebg-preview.png" />
                            </image>
                         </ImageView>
-                        <Circle fill="#1fff44" layoutX="109.0" layoutY="138.0" radius="5.0" stroke="#1fff44" strokeType="INSIDE" />
-                        <Label layoutX="121.0" layoutY="130.0" text="Active" />
-                        <ImageView fx:id="signout_icon1" fitHeight="62.0" fitWidth="174.0" layoutX="54.0" layoutY="494.0" pickOnBounds="true" preserveRatio="true">
+                        <Circle fill="#1fff44" layoutX="120.0" layoutY="136.0" radius="5.0" stroke="#1fff44" strokeType="INSIDE" />
+                        <Label layoutX="132.0" layoutY="128.0" text="Active" />
+                        <ImageView fx:id="signout_icon1" fitHeight="62.0" fitWidth="174.0" layoutX="65.0" layoutY="492.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../photo/Gemini_Generated_Image_otd2h6otd2h6otd2-removebg-preview.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="dashboard_manageOrdersBtn" layoutX="12.0" layoutY="358.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="196.0" text="Manage orders" />
+                        <Button fx:id="dashboard_manageOrdersBtn" layoutX="23.0" layoutY="356.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="196.0" text="Manage orders" />
+                        <Line endX="100.0" layoutX="120.0" layoutY="467.0" startX="-100.0" />
                      </children>
                   </AnchorPane>
                </left>
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f2f5f3;" stylesheets="@../../../../../Design/PageDesign.css" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="dashboard" prefHeight="569.6" prefWidth="880.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="dashboard" prefHeight="569.6" prefWidth="880.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane prefHeight="163.0" prefWidth="850.0" style="-fx-background-color: d4d9d6;" stylesheets="@../../../../../Design/PageDesign.css" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="14.0">
                                  <styleClass>
@@ -435,7 +436,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="client_page1" layoutX="20.0" layoutY="20.0" prefHeight="569.6" prefWidth="880.0" stylesheets="@../../../../../Design/PageDesign.css" visible="false">
+                        <AnchorPane fx:id="client_page1" layoutX="20.0" layoutY="20.0" prefHeight="569.6" prefWidth="880.0" stylesheets="@../../../../../Design/PageDesign.css">
                            <children>
                               <AnchorPane layoutX="15.2" prefHeight="349.0" prefWidth="506.0" AnchorPane.bottomAnchor="206.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="14.0">
                                  <stylesheets>
