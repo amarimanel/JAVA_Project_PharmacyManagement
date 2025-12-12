@@ -148,6 +148,8 @@ public class ClientDashboardControl implements Initializable {
 
     private ImageView user_logo;
 
+
+
     private Connection connect;
     private PreparedStatement prepare;
     private ResultSet result;

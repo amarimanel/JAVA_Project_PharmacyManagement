@@ -83,9 +83,9 @@
                         </Label>
                         <Line endX="100.0" layoutX="121.0" layoutY="230.0" startX="-100.0" />
                         <Label layoutX="25.0" layoutY="242.0" text="Features" />
-                        <Button fx:id="dashboard_btn" layoutX="23.0" layoutY="267.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="196.0" text="Dashboard" />
-                        <Button fx:id="dashboard_manageProductsBtn" layoutX="21.0" layoutY="311.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="196.0" text="Manage Products" />
-                        <Button fx:id="dashboard_manageClientsBtn" layoutX="25.0" layoutY="401.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="196.0" text="Manage Clients" />
+                        <Button fx:id="dashboard_btn" layoutX="23.0" layoutY="267.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="196.0" text="Dashboard" AnchorPane.leftAnchor="25.0" />
+                        <Button fx:id="dashboard_manageProductsBtn" layoutX="27.0" layoutY="310.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="196.0" text="Manage Products" AnchorPane.leftAnchor="25.0" />
+                        <Button fx:id="dashboard_manageClientsBtn" layoutX="25.0" layoutY="401.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="196.0" text="Manage Clients" AnchorPane.leftAnchor="25.0" />
                         <Hyperlink fx:id="signout_link" layoutX="140.0" layoutY="511.0" onAction="#logout" prefHeight="24.0" prefWidth="64.0" text="Sign Out" />
                         <ImageView fx:id="signout_icon" fitHeight="122.0" fitWidth="213.0" layoutX="15.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -99,7 +99,7 @@
                               <Image url="@../../../photo/Gemini_Generated_Image_otd2h6otd2h6otd2-removebg-preview.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="dashboard_manageOrdersBtn" layoutX="23.0" layoutY="356.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="196.0" text="Manage orders" />
+                        <Button fx:id="dashboard_manageOrdersBtn" layoutX="23.0" layoutY="356.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="196.0" text="Manage orders" AnchorPane.leftAnchor="25.0" />
                         <Line endX="100.0" layoutX="120.0" layoutY="467.0" startX="-100.0" />
                      </children>
                   </AnchorPane>
@@ -436,9 +436,9 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="client_page1" layoutX="20.0" layoutY="20.0" prefHeight="569.6" prefWidth="880.0" stylesheets="@../../../../../Design/PageDesign.css">
+                        <AnchorPane fx:id="orders_page" layoutX="20.0" layoutY="20.0" prefHeight="569.6" prefWidth="880.0" stylesheets="@../../../../../Design/PageDesign.css">
                            <children>
-                              <AnchorPane layoutX="15.2" prefHeight="349.0" prefWidth="506.0" AnchorPane.bottomAnchor="206.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="14.0">
+                              <AnchorPane layoutX="-1.6" layoutY="-10.0" prefHeight="349.0" prefWidth="866.0" AnchorPane.bottomAnchor="230.0" AnchorPane.leftAnchor="-2.0" AnchorPane.topAnchor="-10.0">
                                  <stylesheets>
                                     <URL value="@../../../../../Design/DashboardDesign.css" />
                                     <URL value="@../../../../../Design/PageDesign.css" />
@@ -454,101 +454,36 @@
                                           <Font name="Arial Italic" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="order_search" layoutX="106.0" layoutY="21.0" prefHeight="27.0" prefWidth="182.0" promptText="Search Order" />
-                                    <Label layoutX="299.0" layoutY="25.0" prefHeight="20.0" prefWidth="33.0" text="By :" textAlignment="CENTER">
-                                       <font>
-                                          <Font name="Arial Italic" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <ComboBox fx:id="order_searchBy" layoutX="333.0" layoutY="22.0" prefWidth="150.0" />
-                                    <TableView layoutX="2.0" layoutY="70.0" prefHeight="289.0" prefWidth="506.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                    <TextField fx:id="order_search" layoutX="152.0" layoutY="21.0" prefHeight="27.0" prefWidth="474.0" promptText="Search Order" />
+                                    <TableView fx:id="orders_tableView" layoutX="2.0" layoutY="70.0" onSort="#ordersSelect" prefHeight="290.0" prefWidth="868.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-4.0">
                                       <columns>
-                                        <TableColumn prefWidth="75.0" text="C1" />
-                                        <TableColumn prefWidth="75.0" text="C2" />
+                                        <TableColumn fx:id="order_clientId" prefWidth="75.0" text="Client Id" />
+                                        <TableColumn fx:id="order_productId" prefWidth="153.5999755859375" text="product ID" />
+                                          <TableColumn fx:id="order_brandName" prefWidth="192.0000762939453" text="Brand Name" />
+                                          <TableColumn fx:id="order_productName" prefWidth="120.79998779296875" text="Product Name" />
+                                          <TableColumn fx:id="order_quantity" prefWidth="64.7999267578125" text="Quantity" />
+                                          <TableColumn fx:id="order_price" prefWidth="66.4000244140625" text="Price" />
+                                          <TableColumn fx:id="order_date" prefWidth="70.39996337890625" text="date" />
+                                          <TableColumn fx:id="order_status" prefWidth="128.0" text="Status" />
                                       </columns>
                                     </TableView>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane prefHeight="541.0" prefWidth="334.0" stylesheets="@../../../../../Design/PageDesign.css" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+                              <AnchorPane layoutX="531.0" layoutY="352.0" prefHeight="202.0" prefWidth="862.0" stylesheets="@../../../../../Design/PageDesign.css" AnchorPane.bottomAnchor="16.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="352.0">
                                  <styleClass>
                                     <String fx:value="white-bg" />
                                     <String fx:value="radius" />
                                     <String fx:value="shadow" />
                                  </styleClass>
                                  <children>
-                                    <Label layoutX="130.0" layoutY="23.0" prefHeight="20.0" prefWidth="73.0" text="Order Info" textAlignment="CENTER">
+                                    <Label layoutX="395.0" layoutY="30.0" prefHeight="20.0" prefWidth="73.0" text="Order Info" textAlignment="CENTER">
                                        <font>
                                           <Font name="Arial Italic" size="14.0" />
                                        </font>
                                     </Label>
-                                    <Line endX="100.0" layoutX="166.0" layoutY="51.0" startX="-100.0" />
-                                    <Button fx:id="client_updateBtn1" layoutX="24.0" layoutY="395.0" mnemonicParsing="false" onAction="#clientUpdate" prefHeight="59.0" prefWidth="135.0" stylesheets="@../../../../../Design/PageDesign.css" text="Confirm Order" />
-                                    <Button fx:id="client_ClearBtn1" layoutX="23.0" layoutY="467.0" mnemonicParsing="false" onAction="#clientClear" prefHeight="59.0" prefWidth="136.0" stylesheets="@../../../../../Design/PageDesign.css" text="Update Status" />
-                                    <TableView layoutX="-9.0" layoutY="71.0" prefHeight="311.0" prefWidth="341.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                                       <columns>
-                                          <TableColumn prefWidth="75.0" text="C1" />
-                                          <TableColumn prefWidth="75.0" text="C2" />
-                                       </columns>
-                                    </TableView>
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane layoutX="14.0" layoutY="371.0" prefHeight="183.0" prefWidth="506.0">
-                                 <stylesheets>
-                                    <URL value="@../../../../../Design/DashboardDesign.css" />
-                                    <URL value="@../../../../../Design/PageDesign.css" />
-                                 </stylesheets>
-                                 <styleClass>
-                                    <String fx:value="white-bg" />
-                                    <String fx:value="shadow" />
-                                    <String fx:value="radius" />
-                                 </styleClass>
-                                 <children>
-                                    <Label layoutX="195.0" layoutY="14.0" prefHeight="20.0" prefWidth="66.0" text="Client Info" textAlignment="CENTER">
-                                       <font>
-                                          <Font name="Arial Italic" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Line endX="100.0" layoutX="228.0" layoutY="35.0" startX="-100.0" />
-                                    <Label layoutX="14.0" layoutY="59.0" prefHeight="20.0" prefWidth="82.0" text="Full Name:" textAlignment="CENTER">
-                                       <font>
-                                          <Font name="Arial Italic" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="150.0" layoutY="59.0" prefHeight="20.0" prefWidth="222.0" text="Full Name" textAlignment="CENTER">
-                                       <font>
-                                          <Font name="Tahoma Bold" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="14.0" layoutY="91.0" prefHeight="20.0" prefWidth="132.0" text="Security Number :" textAlignment="CENTER">
-                                       <font>
-                                          <Font name="Arial Italic" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="150.0" layoutY="91.0" prefHeight="20.0" prefWidth="222.0" text="00000000000" textAlignment="CENTER">
-                                       <font>
-                                          <Font name="Tahoma Bold" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="14.0" layoutY="125.0" prefHeight="20.0" prefWidth="132.0" text="Phone Number :" textAlignment="CENTER">
-                                       <font>
-                                          <Font name="Arial Italic" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="150.0" layoutY="125.0" prefHeight="20.0" prefWidth="117.0" text="000000000000" textAlignment="CENTER">
-                                       <font>
-                                          <Font name="Tahoma Bold" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="14.0" layoutY="157.0" prefHeight="20.0" prefWidth="131.0" text="Allergies ? :" textAlignment="CENTER">
-                                       <font>
-                                          <Font name="Arial Italic" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Label layoutX="150.0" layoutY="157.0" prefHeight="20.0" prefWidth="222.0" text="Full Name" textAlignment="CENTER">
-                                       <font>
-                                          <Font name="Tahoma Bold" size="14.0" />
-                                       </font>
-                                    </Label>
+                                    <Line endX="100.0" layoutX="431.0" layoutY="58.0" startX="-100.0" />
+                                    <Button fx:id="client_confirmOrderBtn" layoutX="100.0" layoutY="88.0" mnemonicParsing="false" onAction="#confirmOrder" prefHeight="59.0" prefWidth="311.0" stylesheets="@../../../../../Design/PageDesign.css" text="Confirm Order" />
+                                    <Button fx:id="client_confirmDelevryBtn" layoutX="430.0" layoutY="88.0" mnemonicParsing="false" onAction="#confirmDelivery" prefHeight="59.0" prefWidth="335.0" stylesheets="@../../../../../Design/PageDesign.css" text="Confirm Delevry" />
                                  </children>
                               </AnchorPane>
                            </children>

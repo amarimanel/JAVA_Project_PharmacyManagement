@@ -109,7 +109,7 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f2f5f3;" stylesheets="@../../../../../Design/PageDesign.css" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="dashboard" prefHeight="569.6" prefWidth="880.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="dashboard" prefHeight="569.6" prefWidth="880.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane prefHeight="163.0" prefWidth="850.0" style="-fx-background-color: d4d9d6;" stylesheets="@../../../../../Design/PageDesign.css" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="14.0">
                                  <styleClass>
@@ -289,7 +289,6 @@
                                        </font>
                                     </Label>
                                     <Button fx:id="product_updateBtn" layoutX="707.0" layoutY="38.0" mnemonicParsing="false" onAction="#productUpdate" prefHeight="46.0" prefWidth="62.0" text="Update" />
-                                    <Button fx:id="product_importBtn" layoutX="710.0" layoutY="155.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="126.0" text="Import" />
                                     <Button fx:id="product_addBtn" layoutX="773.0" layoutY="38.0" mnemonicParsing="false" onAction="#productAdd" prefHeight="46.0" prefWidth="62.0" text="Add" />
                                     <Button fx:id="product_ClearBtn" layoutX="707.0" layoutY="92.0" mnemonicParsing="false" onAction="#productClear" prefHeight="46.0" prefWidth="62.0" text="Clear" />
                                     <Button fx:id="product_deleteBtn" layoutX="773.0" layoutY="92.0" mnemonicParsing="false" onAction="#productDelete" prefHeight="46.0" prefWidth="62.0" text="Delete" />
@@ -335,7 +334,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="employee_page" prefHeight="569.6" prefWidth="880.0" stylesheets="@../../../../../Design/PageDesign.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="employee_page" prefHeight="569.6" prefWidth="880.0" stylesheets="@../../../../../Design/PageDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane prefHeight="546.0" prefWidth="554.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
                                  <stylesheets>
@@ -350,11 +349,10 @@
                                  <children>
                                     <TableView fx:id="addEmployee_tableView" layoutX="12.0" layoutY="63.0" onMouseClicked="#employeeSelect" prefHeight="467.0" prefWidth="518.0">
                                       <columns>
-                                        <TableColumn fx:id="employee_id" prefWidth="75.0" text="ID" />
-                                        <TableColumn fx:id="employee_fullName" prefWidth="98.4000015258789" text="Full name" />
-                                          <TableColumn fx:id="employee_email" prefWidth="121.5999755859375" text="Email" />
-                                          <TableColumn fx:id="employee_username" prefWidth="104.79998779296875" text="Username" />
-                                          <TableColumn fx:id="employee_date" prefWidth="118.39999389648438" text="Date" />
+                                        <TableColumn fx:id="employee_fullName" prefWidth="139.1999568939209" text="Full name" />
+                                          <TableColumn fx:id="employee_email" prefWidth="114.4000244140625" text="Email" />
+                                          <TableColumn fx:id="employee_username" prefWidth="128.0" text="Username" />
+                                          <TableColumn fx:id="employee_date" prefWidth="137.60000610351562" text="Date" />
                                       </columns>
                                     </TableView>
                                     <Label layoutX="33.0" layoutY="25.0" prefHeight="20.0" prefWidth="119.0" text="Search Employee:" textAlignment="CENTER">
@@ -384,14 +382,8 @@
                                        </font>
                                     </Label>
                                     <Line endX="100.0" layoutX="141.0" layoutY="50.0" startX="-100.0" />
-                                    <TextField fx:id="employee_fillId" layoutX="93.0" layoutY="78.0" prefHeight="27.0" prefWidth="180.0" promptText="ID" />
                                     <TextField fx:id="employee_fillFullName" layoutX="92.0" layoutY="125.0" prefHeight="27.0" prefWidth="182.0" promptText="Full Name" />
                                     <TextField fx:id="employee_fillEmail" layoutX="92.0" layoutY="174.0" prefHeight="27.0" prefWidth="182.0" promptText="Email" />
-                                    <Label layoutX="21.0" layoutY="82.0" prefHeight="20.0" prefWidth="70.0" text="ID :" textAlignment="CENTER">
-                                       <font>
-                                          <Font name="Arial Italic" size="14.0" />
-                                       </font>
-                                    </Label>
                                     <Label layoutX="21.0" layoutY="129.0" prefHeight="20.0" prefWidth="70.0" text="Full name:" textAlignment="CENTER">
                                        <font>
                                           <Font name="Arial Italic" size="14.0" />
@@ -417,7 +409,6 @@
                                     <Button fx:id="employee_deleteBtn" layoutX="140.0" layoutY="395.0" mnemonicParsing="false" onAction="#employeeDelete" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Delete" />
                                     <Button fx:id="employee_addBtn" layoutX="140.0" layoutY="323.0" mnemonicParsing="false" onAction="#employeeAdd" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Add" />
                                     <Button fx:id="employee_clearBtn" layoutX="41.0" layoutY="395.0" mnemonicParsing="false" onAction="#employeeClear" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Clear" />
-                                    <Button fx:id="employee_importBtn" layoutX="42.0" layoutY="466.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="185.0" text="Import" />
                                     <DatePicker fx:id="employee_FillDate" layoutX="85.0" layoutY="265.0" />
                                  </children>
                               </AnchorPane>
