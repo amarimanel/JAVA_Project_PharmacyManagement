@@ -14,6 +14,7 @@ module fr.ece.pharmacymanagementsystem {
     requires javafx.base;
     requires javafx.graphics;
     requires java.desktop;
+    requires jbcrypt;
 
     opens fr.ece.pharmacymanagementsystem to javafx.fxml;
     exports fr.ece.pharmacymanagementsystem;

@@ -44,7 +44,7 @@ public class ClientPageControl implements Initializable {
     // Ensure AlertMessage class exists in your package, otherwise use standard Alert
     private AlertMessage alert = new AlertMessage();
 
-    @FXML
+    /*@FXML
     void loginAccount(ActionEvent event) {
         // 1. Check ONLY Security Number and Password
         if (login_securityNumber.getText().isEmpty() || login_password.getText().isEmpty()) {
@@ -94,6 +94,70 @@ public class ClientPageControl implements Initializable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+    }*/
+
+    //with the hash
+
+    @FXML
+    void loginAccount(ActionEvent event) {
+
+        String passwordInput;
+        if (login_showPassword.isVisible()) {
+            passwordInput = login_showPassword.getText();
+        } else {
+            passwordInput = login_password.getText();
+        }
+
+        // 2. Validate Empty Fields
+        if (login_securityNumber.getText().isEmpty() || passwordInput.isEmpty()) {
+            alert.errorMessage("Please fill all the fields");
+            return;
+        }
+
+        String sql = "SELECT * FROM client WHERE security_number = ?";
+
+        connect = DataBase.connectDB();
+
+        try {
+            prepare = connect.prepareStatement(sql);
+            prepare.setString(1, login_securityNumber.getText());
+            result = prepare.executeQuery();
+
+            if (result.next()) {
+                // User Exists. Now we get the Hashed Password from the DB
+                String storedHash = result.getString("password");
+                String status = result.getString("status");
+
+                if (PasswordUtils.verifyPassword(passwordInput, storedHash)) {
+
+
+
+                    if ("Confirm".equalsIgnoreCase(status)) {
+                        getData.client_id = login_securityNumber.getText();
+                        alert.successMessage("Login Successful");
+                        login_loginBtn.getScene().getWindow().hide();
+
+                        // Load Client Dashboard
+                        Parent root = FXMLLoader.load(getClass().getResource("ClientForm.fxml"));
+                        Stage stage = new Stage();
+                        stage.setTitle("Pharmacy Management System");
+                        stage.setScene(new Scene(root));
+                        stage.show();
+
+                    } else {
+                        alert.errorMessage("Login Failed: Please wait for Admin confirmation.");
+                    }
+
+                } else {
+                    alert.errorMessage("Incorrect Password");
+                }
+
+            } else {
+                alert.errorMessage("Incorrect Security Number");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

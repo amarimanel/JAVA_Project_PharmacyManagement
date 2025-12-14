@@ -84,11 +84,10 @@
                         </Label>
                         <Line endX="100.0" layoutX="110.0" layoutY="232.0" startX="-100.0" />
                         <Label layoutX="14.0" layoutY="244.0" text="Features" />
-                        <Button fx:id="dashboard_btn" layoutX="12.0" layoutY="269.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="196.0" text="Dashboard" />
-                        <Button fx:id="dashboard_manageProductsBtn" layoutX="12.0" layoutY="303.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="196.0" text="Manage Products" />
-                        <Button fx:id="dashboard_manageEmployeesBtn" layoutX="12.0" layoutY="341.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="196.0" text="Manage Employees" />
-                        <Button fx:id="dashboard_manageClientsBtn" layoutX="12.0" layoutY="375.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="196.0" text="Manage Clients" />
-                        <Button fx:id="dashboard_salesRevenueBtn" layoutX="12.0" layoutY="410.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="196.0" text="Sales History and Revenue" />
+                        <Button fx:id="dashboard_btn" layoutX="17.0" layoutY="290.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="196.0" text="Dashboard" />
+                        <Button fx:id="dashboard_manageProductsBtn" layoutX="17.0" layoutY="324.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="196.0" text="Manage Products" />
+                        <Button fx:id="dashboard_manageEmployeesBtn" layoutX="17.0" layoutY="362.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="196.0" text="Manage Employees" />
+                        <Button fx:id="dashboard_manageClientsBtn" layoutX="17.0" layoutY="396.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="26.0" prefWidth="196.0" text="Manage Clients" />
                         <Hyperlink fx:id="signout_link" layoutX="129.0" layoutY="513.0" onAction="#logout" prefHeight="24.0" prefWidth="64.0" text="Sign Out" />
                         <ImageView fx:id="signout_icon" fitHeight="122.0" fitWidth="213.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -109,7 +108,7 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f2f5f3;" stylesheets="@../../../../../Design/PageDesign.css" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="dashboard" prefHeight="569.6" prefWidth="880.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="dashboard" prefHeight="569.6" prefWidth="880.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane prefHeight="163.0" prefWidth="850.0" style="-fx-background-color: d4d9d6;" stylesheets="@../../../../../Design/PageDesign.css" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="14.0">
                                  <styleClass>
@@ -334,7 +333,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="employee_page" prefHeight="569.6" prefWidth="880.0" stylesheets="@../../../../../Design/PageDesign.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="employee_page" prefHeight="569.6" prefWidth="880.0" stylesheets="@../../../../../Design/PageDesign.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane prefHeight="546.0" prefWidth="554.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
                                  <stylesheets>
@@ -361,12 +360,6 @@
                                        </font>
                                     </Label>
                                     <TextField fx:id="employee_search" layoutX="152.0" layoutY="21.0" prefHeight="27.0" prefWidth="182.0" promptText="Search Employee" />
-                                    <Label layoutX="345.0" layoutY="25.0" prefHeight="20.0" prefWidth="33.0" text="By :" textAlignment="CENTER">
-                                       <font>
-                                          <Font name="Arial Italic" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <ComboBox fx:id="employee_searchByType" layoutX="379.0" layoutY="22.0" prefWidth="150.0" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane prefHeight="541.0" prefWidth="282.0" stylesheets="@../../../../../Design/PageDesign.css" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
@@ -400,16 +393,10 @@
                                           <Font name="Arial Italic" size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label layoutX="21.0" layoutY="267.0" prefHeight="20.0" prefWidth="70.0" text="Date :" textAlignment="CENTER">
-                                       <font>
-                                          <Font name="Arial Italic" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <Button fx:id="employee_updateBtn" layoutX="41.0" layoutY="323.0" mnemonicParsing="false" onAction="#employeeUpdate" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Update" />
-                                    <Button fx:id="employee_deleteBtn" layoutX="140.0" layoutY="395.0" mnemonicParsing="false" onAction="#employeeDelete" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Delete" />
-                                    <Button fx:id="employee_addBtn" layoutX="140.0" layoutY="323.0" mnemonicParsing="false" onAction="#employeeAdd" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Add" />
-                                    <Button fx:id="employee_clearBtn" layoutX="41.0" layoutY="395.0" mnemonicParsing="false" onAction="#employeeClear" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Clear" />
-                                    <DatePicker fx:id="employee_FillDate" layoutX="85.0" layoutY="265.0" />
+                                    <Button fx:id="employee_updateBtn" layoutX="56.0" layoutY="323.0" mnemonicParsing="false" onAction="#employeeUpdate" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Update" />
+                                    <Button fx:id="employee_deleteBtn" layoutX="155.0" layoutY="395.0" mnemonicParsing="false" onAction="#employeeDelete" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Delete" />
+                                    <Button fx:id="employee_addBtn" layoutX="155.0" layoutY="323.0" mnemonicParsing="false" onAction="#employeeAdd" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Add" />
+                                    <Button fx:id="employee_clearBtn" layoutX="56.0" layoutY="395.0" mnemonicParsing="false" onAction="#employeeClear" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Clear" />
                                  </children>
                               </AnchorPane>
                            </children>
@@ -454,13 +441,7 @@
                                           <Font name="Arial Italic" size="14.0" />
                                        </font>
                                     </Label>
-                                    <TextField fx:id="client_search" layoutX="152.0" layoutY="21.0" prefHeight="27.0" prefWidth="182.0" promptText="Search Employee" />
-                                    <Label layoutX="345.0" layoutY="25.0" prefHeight="20.0" prefWidth="33.0" text="By :" textAlignment="CENTER">
-                                       <font>
-                                          <Font name="Arial Italic" size="14.0" />
-                                       </font>
-                                    </Label>
-                                    <ComboBox fx:id="client_searchByType" layoutX="379.0" layoutY="22.0" prefWidth="150.0" />
+                                    <TextField fx:id="client_search" layoutX="152.0" layoutY="21.0" prefHeight="27.0" prefWidth="182.0" promptText="Search Client" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane prefHeight="541.0" prefWidth="282.0" stylesheets="@../../../../../Design/PageDesign.css" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
@@ -510,7 +491,6 @@
                                     <Button fx:id="client_DeleteBtn" layoutX="140.0" layoutY="395.0" mnemonicParsing="false" onAction="#clientDelete" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Delete" />
                                     <Button fx:id="client_addBtn" layoutX="140.0" layoutY="323.0" mnemonicParsing="false" onAction="#clientAdd" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Add" />
                                     <Button fx:id="client_ClearBtn" layoutX="41.0" layoutY="395.0" mnemonicParsing="false" onAction="#clientClear" prefHeight="59.0" prefWidth="86.0" stylesheets="@../../../../../Design/PageDesign.css" text="Clear" />
-                                    <Button fx:id="client_importBtn" layoutX="42.0" layoutY="466.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="185.0" text="Import" />
                                     <CheckBox fx:id="client_allergiesCheckBox" layoutX="23.0" layoutY="270.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="122.0" text="Allergies">
                                        <font>
                                           <Font size="14.0" />

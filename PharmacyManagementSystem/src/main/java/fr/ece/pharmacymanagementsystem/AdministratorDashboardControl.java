@@ -100,12 +100,12 @@ public class AdministratorDashboardControl implements Initializable {
     @FXML private TextField product_searchproductName;
     @FXML private TextField product_searchPrice;
     @FXML private TextField product_searchQuantity;
-    @FXML private ComboBox<String> product_selectCategory; // Input for Category
-    @FXML private ComboBox<String> product_statusInput;    // Input for Status
+    @FXML private ComboBox<String> product_selectCategory;
+    @FXML private ComboBox<String> product_statusInput;
     @FXML private DatePicker product_selectDate;
 
-    @FXML private TextField product_search; // Main Search Bar
-    @FXML private ComboBox<String> product_selectByCategory; // Filter for Search
+    @FXML private TextField product_search;
+    @FXML private ComboBox<String> product_selectByCategory;
     @FXML private Button product_addBtn;
     @FXML private Button product_updateBtn;
     @FXML private Button product_deleteBtn;
@@ -240,7 +240,6 @@ public class AdministratorDashboardControl implements Initializable {
 
         addProduct_tableView.setItems(addProductsList);
 
-        // Re-initialize search logic whenever list is reloaded
         productSearchLogic();
     }
 
@@ -503,7 +502,7 @@ public class AdministratorDashboardControl implements Initializable {
     }
 
     public void employeeUpdate() {
-        String sql = "UPDATE admin SET email = ?, full_name = ?, date = ? WHERE username = ?";
+        String sql = "UPDATE admin SET email = ?, full_name = ? WHERE username = ?";
         connect = DataBase.connectDB();
         try {
             if (employee_FillUsername.getText().isEmpty()) {
@@ -514,8 +513,7 @@ public class AdministratorDashboardControl implements Initializable {
                 prepare = connect.prepareStatement(sql);
                 prepare.setString(1, employee_fillEmail.getText());
                 prepare.setString(2, employee_fillFullName.getText());
-                prepare.setString(3, String.valueOf(employee_FillDate.getValue()));
-                prepare.setString(4, employee_FillUsername.getText());
+                prepare.setString(3, employee_FillUsername.getText());
                 prepare.executeUpdate();
 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -564,8 +562,6 @@ public class AdministratorDashboardControl implements Initializable {
         employee_FillUsername.setText(empData.getUsername());
         employee_fillFullName.setText(empData.getFullName());
         employee_fillEmail.setText(empData.getEmail());
-        // Handle date if necessary
-        // employee_FillDate.setValue(LocalDate.parse(String.valueOf(empData.getDate())));
     }
 
     public void employeeSearchLogic() {
@@ -670,11 +666,10 @@ public class AdministratorDashboardControl implements Initializable {
         ObservableList<String> listData = FXCollections.observableArrayList(categoryList);
         product_selectCategory.setItems(listData);
 
-        // Status Box (This caused the previous crash)
         ObservableList<String> listStatus = FXCollections.observableArrayList(statusList);
         product_statusInput.setItems(listStatus);
 
-        // Search Filter Box
+
         ObservableList<String> listType = FXCollections.observableArrayList(searchTypeList);
         product_selectByCategory.setItems(listType);
     }
@@ -780,7 +775,7 @@ public class AdministratorDashboardControl implements Initializable {
         }
     }
 
-    // CLIENT MANAGEMENT LOGIC
+
 
     public void clientAdd() {
         String sql = "INSERT INTO client (client_id, password, full_name, mobile_number, allergies, security_number, total_spent, date, status) "
@@ -811,16 +806,26 @@ public class AdministratorDashboardControl implements Initializable {
                 } else {
                     prepare = connect.prepareStatement(sql);
                     prepare.setString(1, client_fillId.getText());
-                    prepare.setString(2, client_FillPassword.getText());
+
+
+                    String plainTextPass = client_FillPassword.getText();
+                    String securePassword = PasswordUtils.hashPassword(plainTextPass);
+                    prepare.setString(2, securePassword);
+                    // ========================================================
+
                     prepare.setString(3, client_fillFullName.getText());
                     prepare.setString(4, client_fillNumber.getText());
+
                     String allergiesStatus = client_allergiesCheckBox.isSelected() ? "Yes" : "No";
                     prepare.setString(5, allergiesStatus);
+
                     prepare.setString(6, client_fullSecurityNumber.getText());
                     prepare.setDouble(7, 0.0);
+
                     java.util.Date date = new java.util.Date();
                     java.sql.Date sqlDate = new java.sql.Date(date.getTime());
                     prepare.setString(8, String.valueOf(sqlDate));
+
                     prepare.setString(9, client_fillStatus.getText());
 
                     prepare.executeUpdate();

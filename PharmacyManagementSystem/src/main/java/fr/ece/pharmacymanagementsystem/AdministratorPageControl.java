@@ -1,4 +1,4 @@
-package fr.ece.pharmacymanagementsystem;
+/*package fr.ece.pharmacymanagementsystem;
 
 
 import javafx.collections.FXCollections;
@@ -500,6 +500,339 @@ public class AdministratorPageControl implements Initializable {
     }
 
 
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        registerAdminID();
+        userList();
+    }
+}
+*/
+
+
+package fr.ece.pharmacymanagementsystem;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.*;
+
+public class AdministratorPageControl implements Initializable {
+
+    @FXML private ComboBox<String> comboBox;
+    @FXML private TextField login_administratorID;
+    @FXML private PasswordField login_password;
+    @FXML private TextField login_showPassword;
+    @FXML private CheckBox login_checkBox;
+    @FXML private Button login_loginBtn;
+    @FXML private Hyperlink login_forgotPassword;
+    @FXML private Hyperlink login_registerHere;
+    @FXML private AnchorPane login_form;
+    @FXML private ComboBox<?> login_user;
+    @FXML private TextField register_AdminID;
+    @FXML private TextField register_fullName;
+    @FXML private TextField register_email;
+    @FXML private PasswordField register_password;
+    @FXML private TextField register_showPassword;
+    @FXML private CheckBox register_checkBox;
+    @FXML private Button register_signupBtn;
+    @FXML private Hyperlink register_loginHere;
+    @FXML private AnchorPane register_form;
+    @FXML private TextField reset_adminID;
+    @FXML private TextField reset_fullName;
+    @FXML private PasswordField reset_password;
+    @FXML private PasswordField reset_checkPassword;
+    @FXML private TextField reset_resetShowPassword;
+    @FXML private CheckBox reset_checkBox;
+    @FXML private Button reset_resetBtn;
+    @FXML private Hyperlink reset_loginHere;
+    @FXML private AnchorPane reset_form;
+
+    @FXML private AnchorPane main_form;
+
+    private Connection connect;
+    private PreparedStatement prepare;
+    private ResultSet result;
+
+    private final AlertMessage alert = new AlertMessage();
+
+    @FXML
+    void loginAccount() {
+        String passwordInput = login_checkBox.isSelected() ? login_showPassword.getText() : login_password.getText();
+
+        if (login_administratorID.getText().isEmpty() || passwordInput.isEmpty()) {
+            alert.errorMessage("Please fill all the fields");
+        } else {
+            // CORRECTION: Select only by ID. Do NOT check password in SQL.
+            String sql = "SELECT * FROM administrator WHERE administrator_id = ?";
+            connect = DataBase.connectDB();
+
+            try {
+                prepare = connect.prepareStatement(sql);
+                prepare.setString(1, login_administratorID.getText());
+                result = prepare.executeQuery();
+
+                if (result.next()) {
+                    String storedHash = result.getString("password");
+
+                    if (PasswordUtils.verifyPassword(passwordInput, storedHash)) {
+
+                        getData.admin_username = login_administratorID.getText();
+                        alert.successMessage("Login Successful");
+
+                        login_loginBtn.getScene().getWindow().hide();
+                        Parent root = FXMLLoader.load(getClass().getResource("MainForm.fxml"));
+                        Stage stage = new Stage();
+                        stage.setTitle("Pharmacy Management System");
+                        stage.setMinHeight(500);
+                        stage.setMinWidth(350);
+                        stage.setScene(new Scene(root));
+                        stage.show();
+
+                    } else {
+                        alert.errorMessage("Incorrect Password");
+                    }
+                } else {
+                    alert.errorMessage("Incorrect Admin ID");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @FXML
+    void registerAccount() {
+        String passwordInput = register_checkBox.isSelected() ? register_showPassword.getText() : register_password.getText();
+
+        if (register_email.getText().isEmpty() || register_fullName.getText().isEmpty() ||
+                passwordInput.isEmpty() || register_AdminID.getText().isEmpty()) {
+
+            alert.errorMessage("Please fill all the fields");
+
+        } else if (passwordInput.length() < 8) {
+            alert.errorMessage("Invalid Password, at least 8 characters needed");
+        } else {
+            String checkAdminID = "SELECT administrator_id FROM administrator WHERE administrator_id = ?";
+            connect = DataBase.connectDB();
+
+            try {
+                prepare = connect.prepareStatement(checkAdminID);
+                prepare.setString(1, register_AdminID.getText());
+                result = prepare.executeQuery();
+
+                if (result.next()) {
+                    alert.errorMessage(register_AdminID.getText() + " is already taken");
+                } else {
+                    String insertData = "INSERT INTO administrator (full_name, email, administrator_id, password, date) VALUES (?,?,?,?,?)";
+                    prepare = connect.prepareStatement(insertData);
+
+                    prepare.setString(1, register_fullName.getText());
+                    prepare.setString(2, register_email.getText());
+                    prepare.setString(3, register_AdminID.getText());
+
+                    String securePass = PasswordUtils.hashPassword(passwordInput);
+                    prepare.setString(4, securePass);
+
+                    java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
+                    prepare.setString(5, String.valueOf(sqlDate));
+
+                    prepare.executeUpdate();
+
+                    alert.successMessage("Successfully registered");
+
+                    register_form.setVisible(false);
+                    login_form.setVisible(true);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @FXML
+    void resetPassword(ActionEvent event) {
+        String adminID = reset_adminID.getText();
+        String fullName = reset_fullName.getText();
+        String newPass = reset_checkBox.isSelected() ? reset_resetShowPassword.getText() : reset_password.getText();
+        String confirmPass = reset_checkPassword.getText();
+
+        if (adminID.isEmpty() || fullName.isEmpty() || newPass.isEmpty()) {
+            alert.errorMessage("Please fill all fields");
+            return;
+        }
+
+        if (!confirmPass.isEmpty() && !newPass.equals(confirmPass)) {
+            alert.errorMessage("Passwords do not match");
+            return;
+        }
+
+        if (newPass.length() < 8) {
+            alert.errorMessage("Invalid Password, at least 8 characters needed");
+            return;
+        }
+
+        String checkUser = "SELECT * FROM administrator WHERE administrator_id = ? AND full_name = ?";
+        String updatePass = "UPDATE administrator SET password = ? WHERE administrator_id = ?";
+
+        connect = DataBase.connectDB();
+        try {
+            prepare = connect.prepareStatement(checkUser);
+            prepare.setString(1, adminID);
+            prepare.setString(2, fullName);
+            result = prepare.executeQuery();
+
+            if (result.next()) {
+                prepare = connect.prepareStatement(updatePass);
+                String securePass = PasswordUtils.hashPassword(newPass);
+
+                prepare.setString(1, securePass);
+                prepare.setString(2, adminID);
+
+                prepare.executeUpdate();
+                alert.successMessage("Password updated successfully");
+
+                reset_form.setVisible(false);
+                login_form.setVisible(true);
+            } else {
+                alert.errorMessage("Information mismatch. Cannot verify account.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    void loginShowPassword() {
+        if (login_checkBox.isSelected()) {
+            login_showPassword.setText(login_password.getText());
+            login_showPassword.setVisible(true);
+            login_password.setVisible(false);
+        } else {
+            login_password.setText(login_showPassword.getText());
+            login_showPassword.setVisible(false);
+            login_password.setVisible(true);
+        }
+    }
+
+    @FXML
+    void registerShowPassword() {
+        if (register_checkBox.isSelected()) {
+            register_showPassword.setText(register_password.getText());
+            register_showPassword.setVisible(true);
+            register_password.setVisible(false);
+        } else {
+            register_password.setText(register_showPassword.getText());
+            register_showPassword.setVisible(false);
+            register_password.setVisible(true);
+        }
+    }
+
+    @FXML
+    void resetShowPassword(ActionEvent event) {
+        if (reset_checkBox.isSelected()) {
+            reset_resetShowPassword.setText(reset_password.getText());
+            reset_resetShowPassword.setVisible(true);
+            reset_password.setVisible(false);
+        } else {
+            reset_password.setText(reset_resetShowPassword.getText());
+            reset_resetShowPassword.setVisible(false);
+            reset_password.setVisible(true);
+        }
+    }
+
+
+
+    public void registerAdminID() {
+        String adminID = "AID-";
+        int tempID = 0;
+        String sql = "SELECT MAX(id) FROM administrator";
+        connect = DataBase.connectDB();
+        try {
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+            if (result.next()) {
+                tempID = result.getInt(1);
+            }
+
+            adminID += (tempID + 1);
+
+            register_AdminID.setText(adminID);
+            register_AdminID.setDisable(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void switchForm(ActionEvent event) {
+        if (event.getSource() == register_loginHere || event.getSource() == reset_loginHere) {
+            login_form.setVisible(true);
+            register_form.setVisible(false);
+            reset_form.setVisible(false);
+        } else if (event.getSource() == login_registerHere) {
+            login_form.setVisible(false);
+            register_form.setVisible(true);
+            reset_form.setVisible(false);
+            registerAdminID(); // Generate ID when switching to register
+        } else if (event.getSource() == login_forgotPassword) {
+            login_form.setVisible(false);
+            register_form.setVisible(false);
+            reset_form.setVisible(true);
+        }
+    }
+
+    public void switchPage() {
+        String selected = (String) login_user.getSelectionModel().getSelectedItem();
+        if (selected == null) return;
+
+        try {
+            if (selected.equals("Admin Portal")) {
+
+
+            } else if (selected.equals("Employee portal")) {
+                Parent root = FXMLLoader.load(getClass().getResource("hello-view.fxml"));
+                Stage stage = new Stage();
+                stage.setTitle("Pharmacy Management System");
+                stage.setScene(new Scene(root));
+                stage.show();
+                login_user.getScene().getWindow().hide();
+
+            } else if (selected.equals("Client portal")) {
+                Parent root = FXMLLoader.load(getClass().getResource("ClientPage.fxml"));
+                Stage stage = new Stage();
+                stage.setTitle("Pharmacy Management System");
+                stage.setScene(new Scene(root));
+                stage.show();
+                login_user.getScene().getWindow().hide();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void userList() {
+        List<String> listU = new ArrayList<>();
+        for (String data : Users.user) {
+            listU.add(data);
+        }
+        ObservableList listData = FXCollections.observableList(listU);
+        login_user.setItems(listData);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
